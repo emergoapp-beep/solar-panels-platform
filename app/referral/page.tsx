@@ -1,0 +1,111 @@
+import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
+import { createClient } from '@/lib/supabase/server'
+import CopyReferralLink from '@/components/referral/CopyReferralLink'
+import { UsersIcon, LinkIcon, CoinIcon } from '@/components/icons/Icons'
+
+export default async function ReferralPage() {
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    redirect('/login')
+  }
+
+  const headersList = await headers()
+  const host = headersList.get('host') ?? ''
+  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https'
+  const baseUrl = `${protocol}://${host}`
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('ref_code')
+    .eq('id', user.id)
+    .single()
+
+  const { data: referrals, error } = await supabase
+    .from('profiles')
+    .select('id, email, balance, created_at')
+    .eq('referred_by', user.id)
+    .order('created_at', { ascending: false })
+
+  return (
+    <main className="min-h-screen text-white p-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="mb-8 animate-fade-in-up">
+          <h1 className="text-3xl font-bold">Invita i tuoi amici</h1>
+          <p className="text-gray-400">Condividi il tuo link e tieni traccia di chi si iscrive</p>
+        </div>
+
+        <div className="bg-gray-900 rounded-2xl p-6 mb-6 hover-lift">
+          <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+            <LinkIcon className="w-4 h-4" />
+            <p>Il tuo link di invito</p>
+          </div>
+
+          {profile?.ref_code ? (
+            <CopyReferralLink refCode={profile.ref_code} baseUrl={baseUrl} />
+          ) : (
+            <p className="text-gray-500 text-sm">Codice referral non disponibile.</p>
+          )}
+
+          <p className="text-gray-500 text-xs mt-3">
+            Chi si registra da questo link avrà già il codice{' '}
+            <span className="text-gray-300 font-mono">{profile?.ref_code}</span> precompilato.
+          </p>
+        </div>
+
+        <div className="bg-gray-900 rounded-2xl p-6 hover-lift">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <UsersIcon className="w-4 h-4" />
+              <p>I tuoi iscritti</p>
+            </div>
+            <span className="text-sm font-bold">{referrals?.length ?? 0}</span>
+          </div>
+
+          {error && (
+            <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg mb-4">
+              Errore: {error.message}
+            </p>
+          )}
+
+          {referrals && referrals.length > 0 ? (
+            <div className="divide-y divide-gray-800 stagger-children">
+              {referrals.map((referral) => (
+                <div key={referral.id} className="flex items-center justify-between py-3">
+                  <div>
+                    <p className="font-medium text-sm">{referral.email}</p>
+                    <p className="text-gray-500 text-xs">
+                      Iscritto il{' '}
+                      {new Date(referral.created_at).toLocaleDateString('it-IT', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-gray-400 text-sm">
+                    <CoinIcon className="w-3.5 h-3.5" />
+                    {referral.balance}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            !error && (
+              <div className="flex flex-col items-center text-center py-10">
+                <div className="w-14 h-14 rounded-2xl bg-gray-800 text-gray-600 flex items-center justify-center mb-3">
+                  <UsersIcon className="w-6 h-6" />
+                </div>
+                <p className="text-gray-500 text-sm">
+                  Nessun iscritto ancora. Condividi il tuo link per iniziare!
+                </p>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    </main>
+  )
+}
