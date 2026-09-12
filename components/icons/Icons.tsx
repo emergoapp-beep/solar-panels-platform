@@ -83,11 +83,42 @@ export function SunIcon({ className = '' }: IconProps) {
   )
 }
 
+export function PanelIcon({ className = '' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`}>
+      <rect x="3.5" y="6.5" width="17" height="12" rx="1.3" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M3.5 10.5h17M3.5 14.5h17M9 6.5v12M15 6.5v12" stroke="currentColor" strokeWidth="1.1" />
+      <path d="M12 3.6V2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M7.6 4 6.5 2.7M16.4 4l1.1-1.3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function LeafIcon({ className = '' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`}>
+      <path
+        d="M6 18c-1.6-5.6 1-11.4 12-13 1.6 8.4-2.2 13.6-8.4 14.6-1.3.2-2.6.1-3.6-.2Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M7 17c2-3.4 5-7 10.6-11.4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function LogoMarkIcon({ className = '' }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`}>
-      <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M9 15V9l6 6V9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="3" y="8" width="14" height="10" rx="1.2" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M3 12.3h14M8.3 8v10M12.7 8v10" stroke="currentColor" strokeWidth="1" />
+      <path
+        d="M15.4 8.3c.3-3.3 2.3-5 5.4-5.4-.1 3.6-1.8 5.9-5 6.5-.3-.3-.4-.7-.4-1.1Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }

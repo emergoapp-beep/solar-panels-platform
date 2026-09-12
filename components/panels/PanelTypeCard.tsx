@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { SunIcon } from '@/components/icons/Icons'
+import { PanelIcon, LeafIcon } from '@/components/icons/Icons'
 
 type PanelType = {
   id: string
@@ -50,7 +50,7 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
   return (
     <div className="glass cell-texture rounded-2xl p-6 flex flex-col gap-3 hover-lift">
       <div className="flex items-center gap-2 text-[var(--sun)] relative">
-        <SunIcon className="w-5 h-5" />
+        <PanelIcon className="w-5 h-5" />
         <h3 className="font-bold text-white">{panelType.name}</h3>
       </div>
 
@@ -60,8 +60,8 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
         <p>
           Prezzo: <span className="font-bold text-white">{Number(panelType.price)} crediti</span>
         </p>
-        <p>
-          Ricavo stimato: <span className="font-bold text-[var(--energy)]">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
+        <p className="flex items-center gap-1.5">
+          Ricavo stimato: <LeafIcon className="w-3.5 h-3.5 text-[var(--energy)]" /> <span className="font-bold text-[var(--energy)]">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
         </p>
         <p className="text-white/45">
           {panelType.duration_days ? `Attivo per ${panelType.duration_days} giorni` : 'Nessuna scadenza'}

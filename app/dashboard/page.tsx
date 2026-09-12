@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { CoinIcon, LinkIcon, ShieldIcon, SunIcon, WithdrawIcon, UsersIcon } from '@/components/icons/Icons'
+import { CoinIcon, LinkIcon, ShieldIcon, PanelIcon, WithdrawIcon, UsersIcon } from '@/components/icons/Icons'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -22,7 +22,7 @@ export default async function DashboardPage() {
       href: '/panels',
       title: 'Pannelli',
       description: 'Acquista e monitora i tuoi pannelli',
-      icon: SunIcon,
+      icon: PanelIcon,
       accent: 'bg-[var(--sun)]/15 text-[var(--sun)]',
     },
     {

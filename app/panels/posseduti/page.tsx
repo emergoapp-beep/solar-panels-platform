@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import UserPanelRow from '@/components/panels/UserPanelRow'
+import { LeafIcon } from '@/components/icons/Icons'
 
 export default async function OwnedPanelsPage() {
   const supabase = await createClient()
@@ -42,7 +43,7 @@ export default async function OwnedPanelsPage() {
             <p className="font-display text-2xl">{activePanels.length}</p>
           </div>
           <div className="sm:border-l sm:border-white/10 sm:pl-4">
-            <p className="text-white/60 text-sm mb-1">Ricavo stimato al giorno</p>
+            <p className="text-white/60 text-sm mb-1 flex items-center gap-1.5">Ricavo stimato al giorno <LeafIcon className="w-3.5 h-3.5 text-[var(--energy)]" /></p>
             <p className="font-display text-2xl text-[var(--energy)]">+{totalDaily.toFixed(2)}</p>
           </div>
           <div className="sm:border-l sm:border-white/10 sm:pl-4">

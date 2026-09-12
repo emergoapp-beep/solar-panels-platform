@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import PanelTypeCard from '@/components/panels/PanelTypeCard'
 
+import { PanelIcon, LeafIcon } from '@/components/icons/Icons'
+
 export default async function PanelsPage() {
   const supabase = await createClient()
 
@@ -51,13 +53,13 @@ export default async function PanelsPage() {
             <p className="font-display text-2xl">{activePanels.length}</p>
           </div>
           <div className="sm:border-l sm:border-white/10 sm:pl-4">
-            <p className="text-white/60 text-sm mb-1">Ricavo stimato al giorno</p>
+            <p className="text-white/60 text-sm mb-1 flex items-center gap-1.5">Ricavo stimato al giorno <LeafIcon className="w-3.5 h-3.5 text-[var(--energy)]" /></p>
             <p className="font-display text-2xl text-[var(--energy)]">+{totalDaily.toFixed(2)}</p>
           </div>
         </div>
 
         <div>
-          <h2 className="text-lg font-bold mb-3">Pannelli disponibili</h2>
+          <h2 className="text-lg font-bold mb-3 flex items-center gap-2"><PanelIcon className="w-4 h-4 text-[var(--sun)]" /> Pannelli disponibili</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {panelTypes?.map((panelType) => (
               <PanelTypeCard key={panelType.id} panelType={panelType} balance={balance} />
