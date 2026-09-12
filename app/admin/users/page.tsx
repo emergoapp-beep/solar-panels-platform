@@ -19,10 +19,10 @@ export default async function AdminUsersPage() {
         </p>
       )}
 
-      <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-800 text-gray-400 text-left">
+            <tr className="border-b border-white/10 text-white/60 text-left">
               <th className="py-3 px-4 font-medium">Utente</th>
               <th className="py-3 px-4 font-medium">Saldo</th>
               <th className="py-3 px-4 font-medium">Ruolo</th>
@@ -38,7 +38,7 @@ export default async function AdminUsersPage() {
         </table>
 
         {(!profiles || profiles.length === 0) && !error && (
-          <p className="text-gray-500 text-center py-12">Nessun utente registrato.</p>
+          <p className="text-white/45 text-center py-12">Nessun utente registrato.</p>
         )}
       </div>
     </div>

@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050914;
+  --foreground: #f4f6fb;
+
+  /* ----- Tema Liquid Glass / Solare ----- */
+  --sun: #ffb347;
+  --sun-deep: #ff8a3d;
+  --sun-dark-text: #2b1400;
+  --energy: #3ee6a8;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: 18px;
 }
 
 @theme inline {
@@ -11,13 +21,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -55,52 +58,19 @@ body {
 .stagger-children > *:nth-child(6) { animation-delay: 300ms; }
 .stagger-children > *:nth-child(n+7) { animation-delay: 360ms; }
 
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.35; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.08); }
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 2.4s ease-in-out infinite;
-}
-
-@keyframes printer-head-sweep {
-  0%, 100% { transform: translateX(-14px); }
-  50% { transform: translateX(14px); }
-}
-
-.printer-head-sweep {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: printer-head-sweep 2.2s ease-in-out infinite;
-}
-
 /* Sollevamento leggero delle card al passaggio del mouse */
 .hover-lift {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .hover-lift:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 1.8s ease-in-out infinite;
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
-  .stagger-children > *,
-  .animate-pulse-slow,
-  .printer-head-sweep,
-  .animate-shimmer {
+  .stagger-children > * {
     animation: none !important;
   }
   .hover-lift:hover {
@@ -108,102 +78,166 @@ body {
   }
 }
 
-/* ----- Sfondo neon ambientale ----- */
+/* ==========================================================================
+   Superfici vetro (liquid glass)
+   ========================================================================== */
 
-.neon-background {
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.glass-strong {
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Bagliore decorativo d'angolo, per hero/card principali */
+.glow-corner {
+  position: relative;
+  overflow: hidden;
+}
+.glow-corner::before {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 179, 71, 0.32), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Texture leggera a celle fotovoltaiche per le card dei pannelli */
+.cell-texture {
+  position: relative;
+}
+.cell-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 18px, rgba(255, 255, 255, 0.035) 18px 19px),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.035) 18px 19px);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ==========================================================================
+   Bottoni
+   ========================================================================== */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--sun), var(--sun-deep));
+  color: var(--sun-dark-text);
+  border: none;
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.btn-success {
+  background: rgba(62, 230, 168, 0.16);
+  color: var(--energy);
+  border: 1px solid rgba(62, 230, 168, 0.35);
+}
+.btn-success:hover:not(:disabled) {
+  background: rgba(62, 230, 168, 0.26);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--foreground);
+  border: 1px solid var(--glass-border);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Input di form
+   ========================================================================== */
+
+.input-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+  outline: none;
+}
+.input-glass:focus {
+  border-color: rgba(255, 179, 71, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.18);
+}
+
+/* ==========================================================================
+   Sfondo ambientale: cielo notturno + bagliore solare
+   ========================================================================== */
+
+.ambient-background {
   position: fixed;
   inset: 0;
   z-index: -10;
   overflow: hidden;
-  background: #030712;
+  background:
+    radial-gradient(ellipse 1000px 600px at 50% -10%, rgba(255, 179, 71, 0.16), transparent 60%),
+    linear-gradient(180deg, #0d1b3d 0%, #050914 100%);
   pointer-events: none;
 }
 
-.neon-grid {
+.ambient-grid {
   position: absolute;
   inset: -1px;
   background-image:
-    linear-gradient(rgba(96, 165, 250, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 165, 250, 0.09) 1px, transparent 1px);
-  background-size: 42px 42px;
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
 }
 
-.neon-blob {
+.ambient-blob {
   position: absolute;
   border-radius: 9999px;
   filter: blur(90px);
-  opacity: 0.28;
+  opacity: 0.24;
   will-change: transform;
 }
 
-.neon-blob-blue {
-  width: 42vw;
-  height: 42vw;
-  top: -12%;
-  left: -8%;
-  background: #3b82f6;
-  animation: neon-drift-a 22s ease-in-out infinite;
+.ambient-blob-sun {
+  width: 38vw;
+  height: 38vw;
+  top: -10%;
+  left: -6%;
+  background: var(--sun);
+  animation: ambient-drift-a 24s ease-in-out infinite;
 }
 
-.neon-blob-cyan {
-  width: 34vw;
-  height: 34vw;
-  top: 25%;
-  right: -10%;
-  background: #22d3ee;
-  animation: neon-drift-b 26s ease-in-out infinite;
-}
-
-.neon-blob-green {
+.ambient-blob-energy {
   width: 30vw;
   height: 30vw;
-  bottom: -10%;
-  left: 20%;
-  background: #4ade80;
-  opacity: 0.16;
-  animation: neon-drift-c 30s ease-in-out infinite;
+  bottom: -8%;
+  right: -6%;
+  background: var(--energy);
+  opacity: 0.14;
+  animation: ambient-drift-b 28s ease-in-out infinite;
 }
 
-.neon-scanline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 40vh;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(96, 165, 250, 0.05) 45%,
-    rgba(96, 165, 250, 0.09) 50%,
-    rgba(96, 165, 250, 0.05) 55%,
-    transparent 100%
-  );
-  animation: scanline-sweep 9s linear infinite;
+@keyframes ambient-drift-a {
+  0%, 100% { transform: translate(-4%, -4%) scale(1); }
+  50% { transform: translate(6%, 4%) scale(1.1); }
 }
 
-@keyframes neon-drift-a {
-  0%, 100% { transform: translate(-6%, -6%) scale(1); }
-  50% { transform: translate(8%, 4%) scale(1.15); }
-}
-
-@keyframes neon-drift-b {
-  0%, 100% { transform: translate(6%, 8%) scale(1.1); }
-  50% { transform: translate(-10%, -4%) scale(1); }
-}
-
-@keyframes neon-drift-c {
-  0%, 100% { transform: translate(0%, 8%) scale(1); }
-  50% { transform: translate(-8%, -8%) scale(1.2); }
-}
-
-@keyframes scanline-sweep {
-  0% { transform: translateY(-45vh); }
-  100% { transform: translateY(145vh); }
+@keyframes ambient-drift-b {
+  0%, 100% { transform: translate(4%, 4%) scale(1.05); }
+  50% { transform: translate(-6%, -6%) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .neon-blob,
-  .neon-scanline {
+  .ambient-blob {
     animation: none !important;
   }
 }

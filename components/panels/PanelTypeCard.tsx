@@ -48,22 +48,22 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
   }
 
   return (
-    <div className="bg-gray-900 rounded-xl p-6 flex flex-col gap-3 hover-lift">
-      <div className="flex items-center gap-2 text-yellow-400">
+    <div className="glass cell-texture rounded-xl p-6 flex flex-col gap-3 hover-lift">
+      <div className="flex items-center gap-2 text-[var(--sun)] relative">
         <SunIcon className="w-5 h-5" />
         <h3 className="font-bold text-white">{panelType.name}</h3>
       </div>
 
-      {panelType.description && <p className="text-gray-400 text-sm">{panelType.description}</p>}
+      {panelType.description && <p className="text-white/60 text-sm relative">{panelType.description}</p>}
 
-      <div className="text-sm text-gray-300 space-y-1">
+      <div className="text-sm text-white/80 space-y-1 relative">
         <p>
           Prezzo: <span className="font-bold text-white">{Number(panelType.price)} crediti</span>
         </p>
         <p>
-          Ricavo stimato: <span className="font-bold text-green-400">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
+          Ricavo stimato: <span className="font-bold text-[var(--energy)]">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
         </p>
-        <p className="text-gray-500">
+        <p className="text-white/45">
           {panelType.duration_days ? `Attivo per ${panelType.duration_days} giorni` : 'Nessuna scadenza'}
         </p>
       </div>
@@ -73,7 +73,7 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
       <button
         onClick={handleBuy}
         disabled={loading || !canAfford}
-        className="mt-auto w-full bg-yellow-600 hover:bg-yellow-500 disabled:opacity-40 disabled:cursor-not-allowed text-black font-medium py-2 rounded-lg"
+        className="mt-auto w-full btn-primary disabled:opacity-40 disabled:cursor-not-allowed font-medium py-2 rounded-lg"
       >
         {loading ? 'Acquisto...' : canAfford ? 'Acquista' : 'Saldo insufficiente'}
       </button>

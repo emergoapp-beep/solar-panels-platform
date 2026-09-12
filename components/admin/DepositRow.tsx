@@ -57,8 +57,8 @@ export default function DepositRow({ deposit }: { deposit: Deposit }) {
   const isPending = deposit.status === 'pending'
 
   return (
-    <tr className="border-b border-gray-800">
-      <td className="py-3 px-4 text-gray-400 whitespace-nowrap">
+    <tr className="border-b border-white/10">
+      <td className="py-3 px-4 text-white/60 whitespace-nowrap">
         {new Date(deposit.created_at).toLocaleString('it-IT')}
       </td>
       <td className="py-3 px-4">{deposit.profiles?.email ?? '—'}</td>
@@ -66,12 +66,12 @@ export default function DepositRow({ deposit }: { deposit: Deposit }) {
       <td className="py-3 px-4">{Number(deposit.amount_claimed)} USDT</td>
       <td className="py-3 px-4">
         {deposit.status === 'pending' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-yellow-900/50 text-yellow-300">
+          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--sun)]/15 text-[var(--sun)]">
             In verifica
           </span>
         )}
         {deposit.status === 'confirmed' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-green-900/50 text-green-300">
+          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--energy)]/15 text-[var(--energy)]">
             Confermato (+{deposit.amount_credited})
           </span>
         )}
@@ -89,21 +89,21 @@ export default function DepositRow({ deposit }: { deposit: Deposit }) {
                 type="number"
                 value={creditAmount}
                 onChange={(e) => setCreditAmount(e.target.value)}
-                className="w-24 bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-24 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
               />
               <input
                 type="text"
                 placeholder="Nota (opzionale)"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                className="flex-1 bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600"
+                className="flex-1 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
               />
             </div>
             <div className="flex gap-2">
               <button
                 onClick={() => handleAction('confirm')}
                 disabled={loading}
-                className="text-xs bg-green-700 hover:bg-green-600 disabled:opacity-50 px-3 py-1 rounded-lg"
+                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-lg"
               >
                 Conferma
               </button>
@@ -118,7 +118,7 @@ export default function DepositRow({ deposit }: { deposit: Deposit }) {
             {error && <span className="text-red-400 text-xs">{error}</span>}
           </div>
         ) : (
-          <span className="text-gray-500 text-xs">{deposit.admin_note ?? '—'}</span>
+          <span className="text-white/45 text-xs">{deposit.admin_note ?? '—'}</span>
         )}
       </td>
     </tr>

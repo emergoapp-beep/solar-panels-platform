@@ -51,8 +51,8 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
   const isPending = withdrawal.status === 'pending'
 
   return (
-    <tr className="border-b border-gray-800">
-      <td className="py-3 px-4 text-gray-400 whitespace-nowrap">
+    <tr className="border-b border-white/10">
+      <td className="py-3 px-4 text-white/60 whitespace-nowrap">
         {new Date(withdrawal.created_at).toLocaleString('it-IT')}
       </td>
       <td className="py-3 px-4">{withdrawal.profiles?.email ?? '—'}</td>
@@ -60,12 +60,12 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
       <td className="py-3 px-4">{Number(withdrawal.amount)} crediti</td>
       <td className="py-3 px-4">
         {withdrawal.status === 'pending' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-yellow-900/50 text-yellow-300">
+          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--sun)]/15 text-[var(--sun)]">
             In attesa
           </span>
         )}
         {withdrawal.status === 'approved' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-green-900/50 text-green-300">
+          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--energy)]/15 text-[var(--energy)]">
             Approvato
           </span>
         )}
@@ -83,20 +83,20 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
               placeholder="TXID invio (opzionale)"
               value={txHash}
               onChange={(e) => setTxHash(e.target.value)}
-              className="bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600 font-mono"
+              className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono"
             />
             <input
               type="text"
               placeholder="Nota (opzionale)"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              className="bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600"
+              className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             />
             <div className="flex gap-2">
               <button
                 onClick={() => handleAction('approve')}
                 disabled={loading}
-                className="text-xs bg-green-700 hover:bg-green-600 disabled:opacity-50 px-3 py-1 rounded-lg"
+                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-lg"
               >
                 Approva
               </button>
@@ -111,7 +111,7 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
             {error && <span className="text-red-400 text-xs">{error}</span>}
           </div>
         ) : (
-          <span className="text-gray-500 text-xs">
+          <span className="text-white/45 text-xs">
             {withdrawal.tx_hash ? `TXID: ${withdrawal.tx_hash}` : withdrawal.admin_note ?? '—'}
           </span>
         )}

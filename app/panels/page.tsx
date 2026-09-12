@@ -29,26 +29,26 @@ export default async function PanelsPage() {
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-bold">Pannelli solari</h1>
-            <p className="text-gray-400">Acquista pannelli e genera un ricavo ogni giorno</p>
+            <h1 className="font-display text-3xl">Pannelli solari</h1>
+            <p className="text-white/60">Acquista pannelli e genera un ricavo ogni giorno</p>
           </div>
-          <a href="/dashboard" className="text-gray-400 hover:text-white text-sm shrink-0">
+          <a href="/dashboard" className="text-white/60 hover:text-white text-sm shrink-0">
             ← Dashboard
           </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-gray-900 rounded-xl p-6">
-            <p className="text-gray-400 text-sm mb-1">Saldo</p>
+          <div className="glass rounded-xl p-6">
+            <p className="text-white/60 text-sm mb-1">Saldo</p>
             <p className="text-2xl font-bold">{balance} crediti</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-6">
-            <p className="text-gray-400 text-sm mb-1">Pannelli attivi</p>
+          <div className="glass rounded-xl p-6">
+            <p className="text-white/60 text-sm mb-1">Pannelli attivi</p>
             <p className="text-2xl font-bold">{activePanels.length}</p>
           </div>
-          <div className="bg-gray-900 rounded-xl p-6">
-            <p className="text-gray-400 text-sm mb-1">Ricavo stimato al giorno</p>
-            <p className="text-2xl font-bold text-green-400">+{totalDaily.toFixed(2)}</p>
+          <div className="glass rounded-xl p-6">
+            <p className="text-white/60 text-sm mb-1">Ricavo stimato al giorno</p>
+            <p className="text-2xl font-bold text-[var(--energy)]">+{totalDaily.toFixed(2)}</p>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ export default async function PanelsPage() {
             ))}
           </div>
           {(!panelTypes || panelTypes.length === 0) && (
-            <p className="text-gray-500 text-center py-12 bg-gray-900 rounded-xl">
+            <p className="text-white/45 text-center py-12 glass rounded-xl">
               Nessun pannello disponibile al momento.
             </p>
           )}
@@ -68,10 +68,10 @@ export default async function PanelsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">I miei pannelli</h2>
-          <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-800 text-gray-400 text-left">
+                <tr className="border-b border-white/10 text-white/60 text-left">
                   <th className="py-3 px-4 font-medium">Pannello</th>
                   <th className="py-3 px-4 font-medium">Acquistato</th>
                   <th className="py-3 px-4 font-medium">Resa</th>
@@ -88,7 +88,7 @@ export default async function PanelsPage() {
             </table>
 
             {(!userPanels || userPanels.length === 0) && (
-              <p className="text-gray-500 text-center py-12">Non possiedi ancora nessun pannello.</p>
+              <p className="text-white/45 text-center py-12">Non possiedi ancora nessun pannello.</p>
             )}
           </div>
         </div>

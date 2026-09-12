@@ -18,7 +18,7 @@ export default async function AdminWithdrawalsPage() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">
-        Prelievi {pendingCount > 0 && <span className="text-yellow-400 text-sm font-normal">({pendingCount} in attesa)</span>}
+        Prelievi {pendingCount > 0 && <span className="text-[var(--sun)] text-sm font-normal">({pendingCount} in attesa)</span>}
       </h2>
 
       {error && (
@@ -27,10 +27,10 @@ export default async function AdminWithdrawalsPage() {
         </p>
       )}
 
-      <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-800 text-gray-400 text-left">
+            <tr className="border-b border-white/10 text-white/60 text-left">
               <th className="py-3 px-4 font-medium">Data</th>
               <th className="py-3 px-4 font-medium">Utente</th>
               <th className="py-3 px-4 font-medium">Wallet</th>
@@ -47,7 +47,7 @@ export default async function AdminWithdrawalsPage() {
         </table>
 
         {(!withdrawals || withdrawals.length === 0) && !error && (
-          <p className="text-gray-500 text-center py-12">Nessun prelievo richiesto.</p>
+          <p className="text-white/45 text-center py-12">Nessun prelievo richiesto.</p>
         )}
       </div>
     </div>

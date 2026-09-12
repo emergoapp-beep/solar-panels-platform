@@ -18,7 +18,7 @@ export default async function AdminPanelsPage() {
         <PanelTypeForm />
       </div>
 
-      <p className="text-gray-400 text-sm">
+      <p className="text-white/60 text-sm">
         Qui configuri i tipi di pannello acquistabili dagli utenti: prezzo, resa giornaliera e durata.
         I ricavi vengono accreditati automaticamente una volta al giorno (vedi README per impostare il cron).
       </p>
@@ -27,10 +27,10 @@ export default async function AdminPanelsPage() {
         <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg">Errore: {error.message}</p>
       )}
 
-      <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-800 text-gray-400 text-left">
+            <tr className="border-b border-white/10 text-white/60 text-left">
               <th className="py-3 px-4 font-medium">Nome</th>
               <th className="py-3 px-4 font-medium">Prezzo</th>
               <th className="py-3 px-4 font-medium">Resa</th>
@@ -47,7 +47,7 @@ export default async function AdminPanelsPage() {
         </table>
 
         {(!panelTypes || panelTypes.length === 0) && !error && (
-          <p className="text-gray-500 text-center py-12">Nessun tipo di pannello configurato.</p>
+          <p className="text-white/45 text-center py-12">Nessun tipo di pannello configurato.</p>
         )}
       </div>
     </div>

@@ -33,20 +33,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Pannello Admin</h1>
-            <p className="text-gray-400">Gestione della piattaforma</p>
+            <h1 className="font-display text-3xl">Pannello Admin</h1>
+            <p className="text-white/60">Gestione della piattaforma</p>
           </div>
-          <Link href="/dashboard" className="text-gray-400 hover:text-white text-sm shrink-0">
+          <Link href="/dashboard" className="text-white/60 hover:text-white text-sm shrink-0">
             ← Dashboard
           </Link>
         </div>
 
-        <div className="flex gap-2 mb-8 border-b border-gray-800 overflow-x-auto">
+        <div className="flex gap-2 mb-8 border-b border-white/10 overflow-x-auto">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-900 rounded-t-lg whitespace-nowrap shrink-0"
+              className="px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-t-lg whitespace-nowrap shrink-0"
             >
               {link.label}
             </Link>

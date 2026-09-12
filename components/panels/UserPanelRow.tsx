@@ -17,21 +17,21 @@ export default function UserPanelRow({ userPanel }: { userPanel: UserPanel }) {
       : Number(userPanel.daily_yield_value)
 
   return (
-    <tr className="border-b border-gray-800">
+    <tr className="border-b border-white/10">
       <td className="py-3 px-4">{userPanel.name}</td>
-      <td className="py-3 px-4 text-gray-400 whitespace-nowrap">
+      <td className="py-3 px-4 text-white/60 whitespace-nowrap">
         {new Date(userPanel.purchased_at).toLocaleDateString('it-IT')}
       </td>
-      <td className="py-3 px-4 text-green-400">+{dailyEstimate.toFixed(2)}/giorno</td>
+      <td className="py-3 px-4 text-[var(--energy)]">+{dailyEstimate.toFixed(2)}/giorno</td>
       <td className="py-3 px-4 font-medium">{Number(userPanel.total_earned).toFixed(2)}</td>
-      <td className="py-3 px-4 text-gray-400">
+      <td className="py-3 px-4 text-white/60">
         {userPanel.expires_at ? new Date(userPanel.expires_at).toLocaleDateString('it-IT') : 'Nessuna'}
       </td>
       <td className="py-3 px-4">
         {userPanel.status === 'active' ? (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-green-900/50 text-green-300">Attivo</span>
+          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--energy)]/15 text-[var(--energy)]">Attivo</span>
         ) : (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-gray-800 text-gray-400">Scaduto</span>
+          <span className="text-xs px-2 py-1 rounded-lg font-medium input-glass text-white/60">Scaduto</span>
         )}
       </td>
     </tr>

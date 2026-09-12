@@ -76,7 +76,7 @@ export default function PanelTypeForm() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="bg-blue-600 hover:bg-blue-700 text-sm px-4 py-2 rounded-lg font-medium"
+        className="btn-primary text-sm px-4 py-2 rounded-lg font-medium"
       >
         + Nuovo tipo di pannello
       </button>
@@ -84,10 +84,10 @@ export default function PanelTypeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-900 rounded-xl p-6 space-y-4">
+    <form onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold">Nuovo tipo di pannello</h2>
-        <button type="button" onClick={() => setOpen(false)} className="text-gray-400 hover:text-white text-sm">
+        <button type="button" onClick={() => setOpen(false)} className="text-white/60 hover:text-white text-sm">
           Annulla
         </button>
       </div>
@@ -96,18 +96,18 @@ export default function PanelTypeForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Nome</label>
+          <label className="block text-sm text-white/60 mb-1">Nome</label>
           <input
             type="text"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Es. Pannello Base"
-            className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Prezzo (crediti)</label>
+          <label className="block text-sm text-white/60 mb-1">Prezzo (crediti)</label>
           <input
             type="number"
             required
@@ -115,22 +115,22 @@ export default function PanelTypeForm() {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Tipo di resa giornaliera</label>
+          <label className="block text-sm text-white/60 mb-1">Tipo di resa giornaliera</label>
           <select
             value={yieldType}
             onChange={(e) => setYieldType(e.target.value as 'percent' | 'fixed')}
-            className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           >
             <option value="percent">Percentuale sul prezzo pagato</option>
             <option value="fixed">Importo fisso al giorno</option>
           </select>
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">
+          <label className="block text-sm text-white/60 mb-1">
             Valore resa {yieldType === 'percent' ? '(% al giorno)' : '(crediti al giorno)'}
           </label>
           <input
@@ -140,11 +140,11 @@ export default function PanelTypeForm() {
             step="0.01"
             value={yieldValue}
             onChange={(e) => setYieldValue(e.target.value)}
-            className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Durata in giorni (vuoto = nessuna scadenza)</label>
+          <label className="block text-sm text-white/60 mb-1">Durata in giorni (vuoto = nessuna scadenza)</label>
           <input
             type="number"
             min="1"
@@ -152,25 +152,25 @@ export default function PanelTypeForm() {
             value={durationDays}
             onChange={(e) => setDurationDays(e.target.value)}
             placeholder="Es. 365"
-            className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm text-gray-400 mb-1">Descrizione (opzionale)</label>
+        <label className="block text-sm text-white/60 mb-1">Descrizione (opzionale)</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={2}
-          className="w-full bg-gray-800 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-blue-600"
+          className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded-lg font-medium"
+        className="btn-primary disabled:opacity-50 px-4 py-2 rounded-lg font-medium"
       >
         {loading ? 'Creazione...' : 'Crea pannello'}
       </button>

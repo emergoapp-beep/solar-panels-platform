@@ -23,10 +23,10 @@ export default async function WithdrawalsPage() {
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-bold">Prelievi</h1>
-            <p className="text-gray-400">Preleva il tuo saldo in USDT (rete TRC20)</p>
+            <h1 className="font-display text-3xl">Prelievi</h1>
+            <p className="text-white/60">Preleva il tuo saldo in USDT (rete TRC20)</p>
           </div>
-          <a href="/dashboard" className="text-gray-400 hover:text-white text-sm shrink-0">
+          <a href="/dashboard" className="text-white/60 hover:text-white text-sm shrink-0">
             ← Dashboard
           </a>
         </div>
@@ -35,10 +35,10 @@ export default async function WithdrawalsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico prelievi</h2>
-          <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-800 text-gray-400 text-left">
+                <tr className="border-b border-white/10 text-white/60 text-left">
                   <th className="py-3 px-4 font-medium">Data</th>
                   <th className="py-3 px-4 font-medium">Wallet</th>
                   <th className="py-3 px-4 font-medium">Importo</th>
@@ -48,8 +48,8 @@ export default async function WithdrawalsPage() {
               </thead>
               <tbody>
                 {withdrawals?.map((w) => (
-                  <tr key={w.id} className="border-b border-gray-800">
-                    <td className="py-3 px-4 text-gray-400">
+                  <tr key={w.id} className="border-b border-white/10">
+                    <td className="py-3 px-4 text-white/60">
                       {new Date(w.created_at).toLocaleString('it-IT')}
                     </td>
                     <td className="py-3 px-4 font-mono text-xs break-all">{w.wallet_address}</td>
@@ -62,7 +62,7 @@ export default async function WithdrawalsPage() {
             </table>
 
             {(!withdrawals || withdrawals.length === 0) && (
-              <p className="text-gray-500 text-center py-12">Nessun prelievo ancora richiesto.</p>
+              <p className="text-white/45 text-center py-12">Nessun prelievo ancora richiesto.</p>
             )}
           </div>
         </div>

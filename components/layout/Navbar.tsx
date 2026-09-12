@@ -56,11 +56,13 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="bg-gray-900 border-b border-gray-800 px-4 sm:px-6 py-4 relative z-30">
+    <nav className="glass mx-3 mt-3 sm:mx-6 sm:mt-4 rounded-2xl px-4 sm:px-6 py-4 relative z-30">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
-        <a href="/dashboard" className="font-bold flex items-center gap-1.5 text-blue-400 shrink-0">
-          <LogoMarkIcon className="w-5 h-5" />
-          <span className="text-white">App</span>
+        <a href="/dashboard" className="font-bold flex items-center gap-2 shrink-0">
+          <span className="w-8 h-8 rounded-lg flex items-center justify-center btn-primary">
+            <LogoMarkIcon className="w-4 h-4" />
+          </span>
+          <span className="text-white font-display">App</span>
         </a>
 
         <div className="hidden sm:flex items-center gap-6">
@@ -71,22 +73,22 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={isActive ? 'text-sm text-white font-medium' : 'text-sm text-gray-400 hover:text-white'}
+                  className={isActive ? 'text-sm text-white font-medium' : 'text-sm text-[var(--foreground)]/60 hover:text-white'}
                 >
                   {link.label}
                 </a>
               )
             })}
             {role === 'admin' && (
-              <a href="/admin" className="text-sm text-yellow-500 hover:text-yellow-400">
+              <a href="/admin" className="text-sm text-[var(--sun)] hover:brightness-110">
                 Admin
               </a>
             )}
           </div>
 
           <div className="flex items-center gap-4">
-            {email && <span className="text-gray-500 text-sm">{email}</span>}
-            <button onClick={handleLogout} className="text-sm text-gray-400 hover:text-white">
+            {email && <span className="text-[var(--foreground)]/45 text-sm">{email}</span>}
+            <button onClick={handleLogout} className="text-sm text-[var(--foreground)]/60 hover:text-white">
               Logout
             </button>
           </div>
@@ -96,7 +98,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
           aria-expanded={menuOpen}
-          className="sm:hidden flex items-center justify-center w-10 h-10 -mr-2 text-gray-300 hover:text-white"
+          className="sm:hidden flex items-center justify-center w-10 h-10 -mr-2 text-[var(--foreground)]/70 hover:text-white"
         >
           <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
             {menuOpen ? (
@@ -109,7 +111,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden mt-4 pb-1 border-t border-gray-800 pt-3 animate-fade-in-up">
+        <div className="sm:hidden mt-4 pb-1 border-t border-[var(--glass-border)] pt-3 animate-fade-in-up">
           <div className="flex flex-col gap-1">
             {links.map((link) => {
               const isActive = pathname === link.href
@@ -118,7 +120,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                    isActive ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    isActive ? 'bg-white/10 text-white' : 'text-[var(--foreground)]/70 hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -128,16 +130,16 @@ export default function Navbar() {
             {role === 'admin' && (
               <a
                 href="/admin"
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-yellow-500 hover:bg-gray-800 hover:text-yellow-400"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--sun)] hover:bg-white/10"
               >
                 Admin
               </a>
             )}
           </div>
 
-          <div className="flex items-center justify-between gap-3 mt-3 pt-3 border-t border-gray-800 px-3">
-            {email && <span className="text-gray-500 text-xs truncate">{email}</span>}
-            <button onClick={handleLogout} className="text-sm text-gray-300 hover:text-white shrink-0 py-1">
+          <div className="flex items-center justify-between gap-3 mt-3 pt-3 border-t border-[var(--glass-border)] px-3">
+            {email && <span className="text-[var(--foreground)]/45 text-xs truncate">{email}</span>}
+            <button onClick={handleLogout} className="text-sm text-[var(--foreground)]/70 hover:text-white shrink-0 py-1">
               Logout
             </button>
           </div>

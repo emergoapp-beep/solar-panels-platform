@@ -21,22 +21,22 @@ export default async function DepositsPage() {
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-bold">Depositi</h1>
-            <p className="text-gray-400">Ricarica il tuo saldo in USDT (rete TRC20)</p>
+            <h1 className="font-display text-3xl">Depositi</h1>
+            <p className="text-white/60">Ricarica il tuo saldo in USDT (rete TRC20)</p>
           </div>
-          <a href="/dashboard" className="text-gray-400 hover:text-white text-sm shrink-0">
+          <a href="/dashboard" className="text-white/60 hover:text-white text-sm shrink-0">
             ← Dashboard
           </a>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-6 space-y-3">
-          <p className="text-gray-400 text-sm">Invia USDT solo sulla rete TRC20 (Tron) a questo indirizzo:</p>
+        <div className="glass rounded-xl p-6 space-y-3">
+          <p className="text-white/60 text-sm">Invia USDT solo sulla rete TRC20 (Tron) a questo indirizzo:</p>
           {depositAddress ? (
-            <div className="bg-gray-800 rounded-lg px-4 py-3 font-mono text-sm break-all">
+            <div className="input-glass rounded-lg px-4 py-3 font-mono text-sm break-all">
               {depositAddress.address}
             </div>
           ) : (
-            <p className="bg-yellow-900/50 text-yellow-300 text-sm p-3 rounded-lg">
+            <p className="bg-[var(--sun)]/15 text-[var(--sun)] text-sm p-3 rounded-lg">
               Indirizzo di deposito non ancora configurato. Contatta l&apos;assistenza.
             </p>
           )}
@@ -50,10 +50,10 @@ export default async function DepositsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico depositi</h2>
-          <div className="bg-gray-900 rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-800 text-gray-400 text-left">
+                <tr className="border-b border-white/10 text-white/60 text-left">
                   <th className="py-3 px-4 font-medium">Data</th>
                   <th className="py-3 px-4 font-medium">TXID</th>
                   <th className="py-3 px-4 font-medium">Importo dichiarato</th>
@@ -63,8 +63,8 @@ export default async function DepositsPage() {
               </thead>
               <tbody>
                 {deposits?.map((d) => (
-                  <tr key={d.id} className="border-b border-gray-800">
-                    <td className="py-3 px-4 text-gray-400">
+                  <tr key={d.id} className="border-b border-white/10">
+                    <td className="py-3 px-4 text-white/60">
                       {new Date(d.created_at).toLocaleString('it-IT')}
                     </td>
                     <td className="py-3 px-4 font-mono text-xs break-all">{d.tx_hash}</td>
@@ -79,7 +79,7 @@ export default async function DepositsPage() {
             </table>
 
             {(!deposits || deposits.length === 0) && (
-              <p className="text-gray-500 text-center py-12">Nessun deposito ancora segnalato.</p>
+              <p className="text-white/45 text-center py-12">Nessun deposito ancora segnalato.</p>
             )}
           </div>
         </div>

@@ -59,10 +59,10 @@ export default function UserRow({ profile }: { profile: Profile }) {
   }
 
   return (
-    <tr className="border-b border-gray-800">
+    <tr className="border-b border-white/10">
       <td className="py-3 px-4">
         <div className="font-medium">{profile.email ?? '—'}</div>
-        <div className="text-gray-500 text-xs">{profile.ref_code}</div>
+        <div className="text-white/45 text-xs">{profile.ref_code}</div>
       </td>
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
@@ -70,12 +70,12 @@ export default function UserRow({ profile }: { profile: Profile }) {
             type="number"
             value={balance}
             onChange={(e) => setBalance(e.target.value)}
-            className="w-24 bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-24 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
           <button
             onClick={handleSaveBalance}
             disabled={saving}
-            className="text-xs bg-blue-600 hover:bg-blue-700 disabled:opacity-50 px-2 py-1 rounded-lg"
+            className="text-xs btn-primary disabled:opacity-50 px-2 py-1 rounded-lg"
           >
             Salva
           </button>
@@ -86,7 +86,7 @@ export default function UserRow({ profile }: { profile: Profile }) {
           value={role}
           onChange={(e) => handleRoleChange(e.target.value)}
           disabled={saving}
-          className="bg-gray-800 rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-blue-600"
+          className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
         >
           <option value="user">user</option>
           <option value="admin">admin</option>
@@ -99,7 +99,7 @@ export default function UserRow({ profile }: { profile: Profile }) {
           className={`text-xs px-3 py-1 rounded-lg font-medium disabled:opacity-50 ${
             profile.is_blocked
               ? 'bg-red-900/50 text-red-300 hover:bg-red-900'
-              : 'bg-green-900/50 text-green-300 hover:bg-green-900'
+              : 'bg-[var(--energy)]/15 text-[var(--energy)] hover:bg-[var(--energy)]/25'
           }`}
         >
           {profile.is_blocked ? 'Bloccato' : 'Attivo'}
