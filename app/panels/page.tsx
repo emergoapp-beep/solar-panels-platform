@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import PanelTypeCard from '@/components/panels/PanelTypeCard'
-import UserPanelRow from '@/components/panels/UserPanelRow'
 
 export default async function PanelsPage() {
   const supabase = await createClient()
@@ -11,14 +10,14 @@ export default async function PanelsPage() {
     redirect('/login')
   }
 
-  const [{ data: profile }, { data: panelTypes }, { data: userPanels }] = await Promise.all([
+  const [{ data: profile }, { data: panelTypes }, { data: activePanelsData }] = await Promise.all([
     supabase.from('profiles').select('balance').eq('id', user.id).single(),
     supabase.from('panel_types').select('*').eq('is_active', true).order('sort_order', { ascending: true }),
-    supabase.from('user_panels').select('*').eq('user_id', user.id).order('purchased_at', { ascending: false }),
+    supabase.from('user_panels').select('purchase_price, daily_yield_type, daily_yield_value').eq('user_id', user.id).eq('status', 'active'),
   ])
 
   const balance = Number(profile?.balance ?? 0)
-  const activePanels = userPanels?.filter((p) => p.status === 'active') ?? []
+  const activePanels = activePanelsData ?? []
   const totalDaily = activePanels.reduce((sum, p) => {
     const daily = p.daily_yield_type === 'percent' ? (Number(p.purchase_price) * Number(p.daily_yield_value)) / 100 : Number(p.daily_yield_value)
     return sum + daily
@@ -32,9 +31,14 @@ export default async function PanelsPage() {
             <h1 className="font-display text-3xl">Pannelli solari</h1>
             <p className="text-white/60">Acquista pannelli e genera un ricavo ogni giorno</p>
           </div>
-          <a href="/dashboard" className="text-white/60 hover:text-white text-sm shrink-0">
-            ← Dashboard
-          </a>
+          <div className="flex items-center gap-4 text-sm shrink-0">
+            <a href="/panels/posseduti" className="text-[var(--sun)] hover:underline">
+              I miei pannelli →
+            </a>
+            <a href="/dashboard" className="text-white/60 hover:text-white">
+              ← Dashboard
+            </a>
+          </div>
         </div>
 
         <div className="glass glow-corner rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
@@ -64,33 +68,6 @@ export default async function PanelsPage() {
               Nessun pannello disponibile al momento.
             </p>
           )}
-        </div>
-
-        <div>
-          <h2 className="text-lg font-bold mb-3">I miei pannelli</h2>
-          <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-white/10 text-white/60 text-left">
-                  <th className="py-3 px-4 font-medium">Pannello</th>
-                  <th className="py-3 px-4 font-medium">Acquistato</th>
-                  <th className="py-3 px-4 font-medium">Resa</th>
-                  <th className="py-3 px-4 font-medium">Guadagnato</th>
-                  <th className="py-3 px-4 font-medium">Scadenza</th>
-                  <th className="py-3 px-4 font-medium">Stato</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userPanels?.map((userPanel) => (
-                  <UserPanelRow key={userPanel.id} userPanel={userPanel} />
-                ))}
-              </tbody>
-            </table>
-
-            {(!userPanels || userPanels.length === 0) && (
-              <p className="text-white/45 text-center py-12">Non possiedi ancora nessun pannello.</p>
-            )}
-          </div>
         </div>
       </div>
     </main>

@@ -8,6 +8,7 @@ import { LogoMarkIcon } from '@/components/icons/Icons'
 const links = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/panels', label: 'Pannelli' },
+  { href: '/panels/posseduti', label: 'I miei pannelli' },
   { href: '/referral', label: 'Referral' },
   { href: '/deposits', label: 'Depositi' },
   { href: '/withdrawals', label: 'Prelievi' },
