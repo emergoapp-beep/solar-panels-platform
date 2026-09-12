@@ -46,7 +46,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-t-lg whitespace-nowrap shrink-0"
+              className="px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-t-2xl whitespace-nowrap shrink-0"
             >
               {link.label}
             </Link>

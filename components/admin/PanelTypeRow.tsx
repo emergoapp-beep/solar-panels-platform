@@ -90,7 +90,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">
@@ -98,7 +98,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-24 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-24 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">
@@ -106,7 +106,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             <select
               value={yieldType}
               onChange={(e) => setYieldType(e.target.value as 'percent' | 'fixed')}
-              className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             >
               <option value="percent">%/giorno</option>
               <option value="fixed">fisso/giorno</option>
@@ -115,7 +115,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
               type="number"
               value={yieldValue}
               onChange={(e) => setYieldValue(e.target.value)}
-              className="w-20 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="w-20 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             />
           </div>
         </td>
@@ -125,17 +125,17 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             value={durationDays}
             onChange={(e) => setDurationDays(e.target.value)}
             placeholder="∞"
-            className="w-20 input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-20 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">—</td>
         <td className="py-3 px-4">
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
-              <button onClick={handleSave} disabled={loading} className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-lg">
+              <button onClick={handleSave} disabled={loading} className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-xl">
                 Salva
               </button>
-              <button onClick={() => setEditing(false)} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-lg">
+              <button onClick={() => setEditing(false)} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-xl">
                 Annulla
               </button>
             </div>
@@ -160,7 +160,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
         <button
           onClick={() => patch({ isActive: !panelType.is_active })}
           disabled={loading}
-          className={`text-xs px-2 py-1 rounded-lg font-medium disabled:opacity-50 ${
+          className={`text-xs px-2 py-1 rounded-full font-medium disabled:opacity-50 ${
             panelType.is_active ? 'bg-[var(--energy)]/15 text-[var(--energy)]' : 'input-glass text-white/60'
           }`}
         >
@@ -170,10 +170,10 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
       <td className="py-3 px-4">
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
-            <button onClick={() => setEditing(true)} className="text-xs input-glass hover:bg-white/15 px-3 py-1 rounded-lg">
+            <button onClick={() => setEditing(true)} className="text-xs input-glass hover:bg-white/15 px-3 py-1 rounded-xl">
               Modifica
             </button>
-            <button onClick={handleDelete} disabled={loading} className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-lg">
+            <button onClick={handleDelete} disabled={loading} className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-xl">
               Elimina
             </button>
           </div>

@@ -31,31 +31,32 @@ export default async function ReferralPage() {
 
   return (
     <main className="min-h-screen text-white p-6">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <div className="mb-8 animate-fade-in-up">
           <h1 className="font-display text-3xl">Invita i tuoi amici</h1>
           <p className="text-white/60">Condividi il tuo link e tieni traccia di chi si iscrive</p>
         </div>
 
-        <div className="glass rounded-2xl p-6 mb-6 hover-lift">
-          <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
-            <LinkIcon className="w-4 h-4" />
-            <p>Il tuo link di invito</p>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-6 items-start">
+          <div className="glass rounded-3xl p-6 hover-lift">
+            <div className="flex items-center gap-2 text-white/60 text-sm mb-3">
+              <LinkIcon className="w-4 h-4" />
+              <p>Il tuo link di invito</p>
+            </div>
+
+            {profile?.ref_code ? (
+              <CopyReferralLink refCode={profile.ref_code} baseUrl={baseUrl} />
+            ) : (
+              <p className="text-white/45 text-sm">Codice referral non disponibile.</p>
+            )}
+
+            <p className="text-white/45 text-xs mt-3">
+              Chi si registra da questo link avrà già il codice{' '}
+              <span className="text-white/80 font-mono">{profile?.ref_code}</span> precompilato.
+            </p>
           </div>
 
-          {profile?.ref_code ? (
-            <CopyReferralLink refCode={profile.ref_code} baseUrl={baseUrl} />
-          ) : (
-            <p className="text-white/45 text-sm">Codice referral non disponibile.</p>
-          )}
-
-          <p className="text-white/45 text-xs mt-3">
-            Chi si registra da questo link avrà già il codice{' '}
-            <span className="text-white/80 font-mono">{profile?.ref_code}</span> precompilato.
-          </p>
-        </div>
-
-        <div className="glass rounded-2xl p-6 hover-lift">
+          <div className="glass rounded-3xl p-6 hover-lift">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2 text-white/60 text-sm">
               <UsersIcon className="w-4 h-4" />
@@ -65,7 +66,7 @@ export default async function ReferralPage() {
           </div>
 
           {error && (
-            <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg mb-4">
+            <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl mb-4">
               Errore: {error.message}
             </p>
           )}
@@ -95,7 +96,7 @@ export default async function ReferralPage() {
           ) : (
             !error && (
               <div className="flex flex-col items-center text-center py-10">
-                <div className="w-14 h-14 rounded-2xl input-glass text-white/35 flex items-center justify-center mb-3">
+                <div className="w-14 h-14 rounded-3xl input-glass text-white/35 flex items-center justify-center mb-3">
                   <UsersIcon className="w-6 h-6" />
                 </div>
                 <p className="text-white/45 text-sm">
@@ -104,6 +105,7 @@ export default async function ReferralPage() {
               </div>
             )
           )}
+          </div>
         </div>
       </div>
     </main>

@@ -35,7 +35,7 @@ export default async function WithdrawalsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico prelievi</h2>
-          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-white/60 text-left">

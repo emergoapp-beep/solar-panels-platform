@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
+import AppFrame from "@/components/layout/AppFrame";
 import AmbientBackground from "@/components/layout/AmbientBackground";
 
 const geistSans = Geist({
@@ -37,8 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AmbientBackground />
-        <Navbar />
-        {children}
+        <AppFrame>{children}</AppFrame>
       </body>
     </html>
   );

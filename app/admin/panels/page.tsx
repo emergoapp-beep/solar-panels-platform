@@ -24,10 +24,10 @@ export default async function AdminPanelsPage() {
       </p>
 
       {error && (
-        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg">Errore: {error.message}</p>
+        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl">Errore: {error.message}</p>
       )}
 
-      <div className="glass rounded-xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/10 text-white/60 text-left">

@@ -29,14 +29,14 @@ export default async function DepositsPage() {
           </a>
         </div>
 
-        <div className="glass rounded-xl p-6 space-y-3">
+        <div className="glass rounded-2xl p-6 space-y-3">
           <p className="text-white/60 text-sm">Invia USDT solo sulla rete TRC20 (Tron) a questo indirizzo:</p>
           {depositAddress ? (
-            <div className="input-glass rounded-lg px-4 py-3 font-mono text-sm break-all">
+            <div className="input-glass rounded-xl px-4 py-3 font-mono text-sm break-all">
               {depositAddress.address}
             </div>
           ) : (
-            <p className="bg-[var(--sun)]/15 text-[var(--sun)] text-sm p-3 rounded-lg">
+            <p className="bg-[var(--sun)]/15 text-[var(--sun)] text-sm p-3 rounded-xl">
               Indirizzo di deposito non ancora configurato. Contatta l&apos;assistenza.
             </p>
           )}
@@ -50,7 +50,7 @@ export default async function DepositsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico depositi</h2>
-          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-white/60 text-left">

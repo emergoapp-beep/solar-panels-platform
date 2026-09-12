@@ -60,17 +60,17 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
       <td className="py-3 px-4">{Number(withdrawal.amount)} crediti</td>
       <td className="py-3 px-4">
         {withdrawal.status === 'pending' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--sun)]/15 text-[var(--sun)]">
+          <span className="text-xs px-2 py-1 rounded-full font-medium bg-[var(--sun)]/15 text-[var(--sun)]">
             In attesa
           </span>
         )}
         {withdrawal.status === 'approved' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--energy)]/15 text-[var(--energy)]">
+          <span className="text-xs px-2 py-1 rounded-full font-medium bg-[var(--energy)]/15 text-[var(--energy)]">
             Approvato
           </span>
         )}
         {withdrawal.status === 'rejected' && (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-red-900/50 text-red-300">
+          <span className="text-xs px-2 py-1 rounded-full font-medium bg-red-900/50 text-red-300">
             Rifiutato (rimborsato)
           </span>
         )}
@@ -83,27 +83,27 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
               placeholder="TXID invio (opzionale)"
               value={txHash}
               onChange={(e) => setTxHash(e.target.value)}
-              className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono"
+              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono"
             />
             <input
               type="text"
               placeholder="Nota (opzionale)"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              className="input-glass rounded-lg px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             />
             <div className="flex gap-2">
               <button
                 onClick={() => handleAction('approve')}
                 disabled={loading}
-                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-lg"
+                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-xl"
               >
                 Approva
               </button>
               <button
                 onClick={() => handleAction('reject')}
                 disabled={loading}
-                className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-lg"
+                className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-xl"
               >
                 Rifiuta (rimborsa)
               </button>

@@ -37,18 +37,18 @@ export default async function PanelsPage() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="glass rounded-xl p-6">
+        <div className="glass glow-corner rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
+          <div>
             <p className="text-white/60 text-sm mb-1">Saldo</p>
-            <p className="text-2xl font-bold">{balance} crediti</p>
+            <p className="font-display text-2xl text-[var(--sun)]">{balance} crediti</p>
           </div>
-          <div className="glass rounded-xl p-6">
+          <div className="sm:border-l sm:border-white/10 sm:pl-4">
             <p className="text-white/60 text-sm mb-1">Pannelli attivi</p>
-            <p className="text-2xl font-bold">{activePanels.length}</p>
+            <p className="font-display text-2xl">{activePanels.length}</p>
           </div>
-          <div className="glass rounded-xl p-6">
+          <div className="sm:border-l sm:border-white/10 sm:pl-4">
             <p className="text-white/60 text-sm mb-1">Ricavo stimato al giorno</p>
-            <p className="text-2xl font-bold text-[var(--energy)]">+{totalDaily.toFixed(2)}</p>
+            <p className="font-display text-2xl text-[var(--energy)]">+{totalDaily.toFixed(2)}</p>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ export default async function PanelsPage() {
             ))}
           </div>
           {(!panelTypes || panelTypes.length === 0) && (
-            <p className="text-white/45 text-center py-12 glass rounded-xl">
+            <p className="text-white/45 text-center py-12 glass rounded-2xl">
               Nessun pannello disponibile al momento.
             </p>
           )}
@@ -68,7 +68,7 @@ export default async function PanelsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">I miei pannelli</h2>
-          <div className="glass rounded-xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-white/60 text-left">

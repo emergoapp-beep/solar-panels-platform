@@ -49,7 +49,7 @@ export default function DepositForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-4">
+    <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-4">
       <h2 className="text-lg font-bold">Segnala un deposito</h2>
       <p className="text-white/60 text-sm">
         Dopo aver inviato gli USDT (rete TRC20) all&apos;indirizzo sopra, inserisci qui l&apos;hash
@@ -58,10 +58,10 @@ export default function DepositForm() {
       </p>
 
       {error && (
-        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg">{error}</p>
+        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl">{error}</p>
       )}
       {success && (
-        <p className="bg-[var(--energy)]/15 text-[var(--energy)] text-sm p-3 rounded-lg">
+        <p className="bg-[var(--energy)]/15 text-[var(--energy)] text-sm p-3 rounded-xl">
           Richiesta inviata. Riceverai il credito dopo la verifica.
         </p>
       )}
@@ -74,7 +74,7 @@ export default function DepositForm() {
           value={txHash}
           onChange={(e) => setTxHash(e.target.value)}
           placeholder="Es. a1b2c3d4e5f6..."
-          className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono text-base sm:text-sm"
+          className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono text-base sm:text-sm"
         />
       </div>
 
@@ -87,14 +87,14 @@ export default function DepositForm() {
           step="0.01"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+          className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full btn-primary disabled:opacity-50 py-3 rounded-lg font-medium"
+        className="w-full btn-primary disabled:opacity-50 py-3 rounded-full font-medium"
       >
         {loading ? 'Invio...' : 'Segnala deposito'}
       </button>

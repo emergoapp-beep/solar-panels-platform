@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { CoinIcon, LinkIcon, ShieldIcon } from '@/components/icons/Icons'
+import { CoinIcon, LinkIcon, ShieldIcon, SunIcon, WithdrawIcon, UsersIcon } from '@/components/icons/Icons'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -17,6 +17,37 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single()
 
+  const quickActions = [
+    {
+      href: '/panels',
+      title: 'Pannelli',
+      description: 'Acquista e monitora i tuoi pannelli',
+      icon: SunIcon,
+      accent: 'bg-[var(--sun)]/15 text-[var(--sun)]',
+    },
+    {
+      href: '/deposits',
+      title: 'Deposita',
+      description: 'Ricarica il saldo',
+      icon: CoinIcon,
+      accent: 'bg-[var(--energy)]/15 text-[var(--energy)]',
+    },
+    {
+      href: '/withdrawals',
+      title: 'Preleva',
+      description: 'Richiedi un prelievo',
+      icon: WithdrawIcon,
+      accent: 'bg-white/10 text-white/80',
+    },
+    {
+      href: '/referral',
+      title: 'Invita',
+      description: 'Condividi il tuo link referral',
+      icon: UsersIcon,
+      accent: 'bg-[var(--sun)]/15 text-[var(--sun)]',
+    },
+  ]
+
   return (
     <main className="min-h-screen text-white p-6">
       <div className="max-w-4xl mx-auto">
@@ -25,47 +56,55 @@ export default async function DashboardPage() {
           Bentornato, {profile?.email}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="glass glow-corner rounded-xl p-6 hover-lift">
-            <div className="flex items-center gap-2 text-white/60 text-sm mb-1">
+        <div className="glass glow-corner rounded-3xl p-8 mb-6 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-8 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <div>
+            <div className="flex items-center gap-2 text-white/60 text-sm mb-2">
               <CoinIcon className="w-4 h-4" />
               <p>Saldo</p>
             </div>
-            <p className="text-2xl font-display text-[var(--sun)]">{Number(profile?.balance ?? 0)} crediti</p>
+            <p className="font-display text-4xl text-[var(--sun)]">
+              {Number(profile?.balance ?? 0)} <span className="text-lg text-white/50 font-sans">crediti</span>
+            </p>
           </div>
-          <a href="/referral" className="glass rounded-xl p-6 hover-lift block">
-            <div className="flex items-center gap-2 text-white/60 text-sm mb-1">
-              <LinkIcon className="w-4 h-4" />
-              <p>Codice Referral</p>
+
+          <div className="flex flex-col justify-center gap-3 md:border-l md:border-white/10 md:pl-8">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-white/60 flex items-center gap-1.5">
+                <LinkIcon className="w-3.5 h-3.5" />
+                Referral
+              </span>
+              <span className="font-medium">{profile?.ref_code}</span>
             </div>
-            <p className="text-2xl font-bold">{profile?.ref_code}</p>
-          </a>
-          <div className="glass rounded-xl p-6 hover-lift">
-            <div className="flex items-center gap-2 text-white/60 text-sm mb-1">
-              <ShieldIcon className="w-4 h-4" />
-              <p>Ruolo</p>
+            <div className="h-px bg-white/10" />
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-white/60 flex items-center gap-1.5">
+                <ShieldIcon className="w-3.5 h-3.5" />
+                Ruolo
+              </span>
+              <span className="font-medium capitalize">{profile?.role}</span>
             </div>
-            <p className="text-2xl font-bold capitalize">{profile?.role}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <a href="/panels" className="block glass hover:bg-white/10 rounded-xl p-6 transition-colors hover-lift">
-            <h2 className="text-lg font-bold mb-1">Pannelli →</h2>
-            <p className="text-white/60 text-sm">Acquista e monitora i tuoi pannelli</p>
-          </a>
-          <a href="/deposits" className="block glass hover:bg-white/10 rounded-xl p-6 transition-colors hover-lift">
-            <h2 className="text-lg font-bold mb-1">Deposita →</h2>
-            <p className="text-white/60 text-sm">Ricarica il saldo</p>
-          </a>
-          <a href="/withdrawals" className="block glass hover:bg-white/10 rounded-xl p-6 transition-colors hover-lift">
-            <h2 className="text-lg font-bold mb-1">Preleva →</h2>
-            <p className="text-white/60 text-sm">Richiedi un prelievo</p>
-          </a>
-          <a href="/referral" className="block glass hover:bg-white/10 rounded-xl p-6 transition-colors hover-lift">
-            <h2 className="text-lg font-bold mb-1">Invita →</h2>
-            <p className="text-white/60 text-sm">Condividi il tuo link referral</p>
-          </a>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
+          {quickActions.map((action) => {
+            const Icon = action.icon
+            return (
+              <a
+                key={action.href}
+                href={action.href}
+                className="glass hover:bg-white/10 rounded-2xl p-6 transition-colors hover-lift flex items-center gap-4"
+              >
+                <span className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${action.accent}`}>
+                  <Icon className="w-5 h-5" />
+                </span>
+                <div>
+                  <h2 className="text-lg font-bold mb-0.5">{action.title} →</h2>
+                  <p className="text-white/60 text-sm">{action.description}</p>
+                </div>
+              </a>
+            )
+          })}
         </div>
       </div>
     </main>

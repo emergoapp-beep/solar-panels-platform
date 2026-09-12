@@ -53,7 +53,7 @@ export default function WithdrawalForm({ balance }: { balance: number }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-4">
+    <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-4">
       <h2 className="text-lg font-bold">Richiedi un prelievo</h2>
       <p className="text-white/60 text-sm">
         L&apos;importo richiesto verrà sottratto subito dal tuo saldo e la richiesta resterà in
@@ -61,10 +61,10 @@ export default function WithdrawalForm({ balance }: { balance: number }) {
       </p>
 
       {error && (
-        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-lg">{error}</p>
+        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl">{error}</p>
       )}
       {success && (
-        <p className="bg-[var(--energy)]/15 text-[var(--energy)] text-sm p-3 rounded-lg">
+        <p className="bg-[var(--energy)]/15 text-[var(--energy)] text-sm p-3 rounded-xl">
           Richiesta di prelievo inviata. Attendi l&apos;autorizzazione.
         </p>
       )}
@@ -77,7 +77,7 @@ export default function WithdrawalForm({ balance }: { balance: number }) {
           value={wallet}
           onChange={(e) => setWallet(e.target.value)}
           placeholder="Es. TXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-          className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono text-base sm:text-sm"
+          className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono text-base sm:text-sm"
         />
       </div>
 
@@ -91,7 +91,7 @@ export default function WithdrawalForm({ balance }: { balance: number }) {
           max={balance}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full input-glass rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+          className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
         />
         <p className="text-white/45 text-xs mt-1">Saldo disponibile: {balance} crediti</p>
       </div>
@@ -99,7 +99,7 @@ export default function WithdrawalForm({ balance }: { balance: number }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full btn-primary disabled:opacity-50 py-3 rounded-lg font-medium"
+        className="w-full btn-primary disabled:opacity-50 py-3 rounded-full font-medium"
       >
         {loading ? 'Invio...' : 'Richiedi prelievo'}
       </button>

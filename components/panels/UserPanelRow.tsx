@@ -29,9 +29,9 @@ export default function UserPanelRow({ userPanel }: { userPanel: UserPanel }) {
       </td>
       <td className="py-3 px-4">
         {userPanel.status === 'active' ? (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium bg-[var(--energy)]/15 text-[var(--energy)]">Attivo</span>
+          <span className="text-xs px-2 py-1 rounded-full font-medium bg-[var(--energy)]/15 text-[var(--energy)]">Attivo</span>
         ) : (
-          <span className="text-xs px-2 py-1 rounded-lg font-medium input-glass text-white/60">Scaduto</span>
+          <span className="text-xs px-2 py-1 rounded-full font-medium input-glass text-white/60">Scaduto</span>
         )}
       </td>
     </tr>
