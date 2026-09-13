@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #04120c;
-  --foreground: #f2f8f4;
+  --background: #030c14;
+  --foreground: #eef7fb;
 
-  /* ----- Tema Liquid Glass / Solare (verde) ----- */
-  --sun: #22c55e;
-  --sun-deep: #16a34a;
-  --sun-dark-text: #052e16;
-  --energy: #3ee6a8;
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.14);
+  /* ----- Tema Liquid Glass / Ice ----- */
+  --sun: #38bdf8;
+  --sun-deep: #0284c7;
+  --sun-dark-text: #04202e;
+  --energy: #a5f3fc;
+  --glass-bg: rgba(224, 242, 254, 0.06);
+  --glass-bg-strong: rgba(224, 242, 254, 0.12);
+  --glass-border: rgba(186, 230, 253, 0.16);
   --glass-blur: 18px;
 }
 
@@ -108,7 +108,7 @@ body {
   right: -70px;
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.32), transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.32), transparent 70%);
   filter: blur(10px);
   pointer-events: none;
 }
@@ -142,12 +142,12 @@ body {
 }
 
 .btn-success {
-  background: rgba(62, 230, 168, 0.16);
+  background: rgba(165, 243, 252, 0.14);
   color: var(--energy);
-  border: 1px solid rgba(62, 230, 168, 0.35);
+  border: 1px solid rgba(165, 243, 252, 0.32);
 }
 .btn-success:hover:not(:disabled) {
-  background: rgba(62, 230, 168, 0.26);
+  background: rgba(165, 243, 252, 0.24);
 }
 
 .btn-ghost {
@@ -170,8 +170,8 @@ body {
   outline: none;
 }
 .input-glass:focus {
-  border-color: rgba(34, 197, 94, 0.6);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
 
 /* ==========================================================================
@@ -184,8 +184,8 @@ body {
   z-index: -10;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 1000px 600px at 50% -10%, rgba(34, 197, 94, 0.16), transparent 60%),
-    linear-gradient(180deg, #0a2318 0%, #04120c 100%);
+    radial-gradient(ellipse 1000px 600px at 50% -10%, rgba(56, 189, 248, 0.16), transparent 60%),
+    linear-gradient(180deg, #0a2536 0%, #030c14 100%);
   pointer-events: none;
 }
 
