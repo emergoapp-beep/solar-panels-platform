@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation'
-import { Fragment } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import DepositForm from '@/components/deposits/DepositForm'
 import StatusBadge from '@/components/deposits/DepositStatusBadge'
+import CopyAddressButton from '@/components/deposits/CopyAddressButton'
 
 export default async function DepositsPage() {
   const supabase = await createClient()
@@ -33,9 +33,7 @@ export default async function DepositsPage() {
         <div className="glass rounded-3xl p-6 space-y-3">
           <p className="text-white/60 text-sm">Invia USDT solo sulla rete TRC20 (Tron) a questo indirizzo:</p>
           {depositAddress ? (
-            <div className="input-glass rounded-2xl px-4 py-3 font-mono text-sm break-all">
-              {depositAddress.address}
-            </div>
+            <CopyAddressButton address={depositAddress.address} />
           ) : (
             <p className="bg-[var(--sun)]/15 text-[var(--sun)] text-sm p-3 rounded-2xl">
               Indirizzo di deposito non ancora configurato. Contatta l&apos;assistenza.
@@ -51,9 +49,9 @@ export default async function DepositsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico depositi</h2>
-          <div className="glass rounded-3xl overflow-hidden">
+          <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="hidden sm:table-header-group">
+              <thead>
                 <tr className="border-b border-white/10 text-white/60 text-left">
                   <th className="py-3 px-4 font-medium">Data</th>
                   <th className="py-3 px-4 font-medium">TXID</th>
@@ -64,46 +62,17 @@ export default async function DepositsPage() {
               </thead>
               <tbody>
                 {deposits?.map((d) => (
-                  <Fragment key={d.id}>
-                    {/* Riga tabella, solo da tablet in su */}
-                    <tr className="hidden sm:table-row border-b border-white/10">
-                      <td className="py-3 px-4 text-white/60">
-                        {new Date(d.created_at).toLocaleString('it-IT')}
-                      </td>
-                      <td className="py-3 px-4 font-mono text-xs break-all">{d.tx_hash}</td>
-                      <td className="py-3 px-4">{Number(d.amount_claimed)} USDT</td>
-                      <td className="py-3 px-4">
-                        {d.amount_credited != null ? `${Number(d.amount_credited)} crediti` : '—'}
-                      </td>
-                      <td className="py-3 px-4"><StatusBadge status={d.status} /></td>
-                    </tr>
-
-                    {/* Card impilata verticalmente, solo su mobile */}
-                    <tr className="table-row sm:hidden border-b border-white/10">
-                      <td className="p-4">
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="text-white/60 text-xs">
-                            {new Date(d.created_at).toLocaleString('it-IT')}
-                          </span>
-                          <StatusBadge status={d.status} />
-                        </div>
-                        <div className="space-y-1.5 text-sm">
-                          <div className="flex justify-between gap-3">
-                            <span className="text-white/60">Importo dichiarato</span>
-                            <span>{Number(d.amount_claimed)} USDT</span>
-                          </div>
-                          <div className="flex justify-between gap-3">
-                            <span className="text-white/60">Accreditato</span>
-                            <span>{d.amount_credited != null ? `${Number(d.amount_credited)} crediti` : '—'}</span>
-                          </div>
-                          <div className="pt-1 border-t border-white/10">
-                            <span className="text-white/60 text-xs">TXID</span>
-                            <p className="font-mono text-xs break-all">{d.tx_hash}</p>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </Fragment>
+                  <tr key={d.id} className="border-b border-white/10">
+                    <td className="py-3 px-4 text-white/60">
+                      {new Date(d.created_at).toLocaleString('it-IT')}
+                    </td>
+                    <td className="py-3 px-4 font-mono text-xs break-all">{d.tx_hash}</td>
+                    <td className="py-3 px-4">{Number(d.amount_claimed)} USDT</td>
+                    <td className="py-3 px-4">
+                      {d.amount_credited != null ? `${Number(d.amount_credited)} crediti` : '—'}
+                    </td>
+                    <td className="py-3 px-4"><StatusBadge status={d.status} /></td>
+                  </tr>
                 ))}
               </tbody>
             </table>
