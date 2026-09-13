@@ -36,7 +36,7 @@ export default async function SupportPage() {
 
         <div className="glass rounded-3xl overflow-hidden divide-y divide-white/10">
           {tickets?.map((ticket) => (
-            
+            <a
               key={ticket.id}
               href={`/support/${ticket.id}`}
               className="flex items-center justify-between gap-3 px-5 py-4 hover:bg-white/5 transition-colors"
