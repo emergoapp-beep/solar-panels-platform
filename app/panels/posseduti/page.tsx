@@ -37,6 +37,10 @@ export default async function OwnedPanelsPage() {
           </a>
         </div>
 
+        <p className="text-white/45 text-xs -mt-4">
+          Il &quot;prossimo accredito&quot; è una stima (24h dopo l&apos;ultimo accredito): l&apos;orario esatto dipende da quando gira il cron giornaliero.
+        </p>
+
         <div className="glass glow-corner rounded-3xl p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
           <div>
             <p className="text-white/60 text-sm mb-1">Pannelli attivi</p>
@@ -60,6 +64,7 @@ export default async function OwnedPanelsPage() {
                 <th className="py-3 px-4 font-medium">Acquistato</th>
                 <th className="py-3 px-4 font-medium">Resa</th>
                 <th className="py-3 px-4 font-medium">Guadagnato</th>
+                <th className="py-3 px-4 font-medium">Prossimo accredito</th>
                 <th className="py-3 px-4 font-medium">Scadenza</th>
                 <th className="py-3 px-4 font-medium">Stato</th>
               </tr>

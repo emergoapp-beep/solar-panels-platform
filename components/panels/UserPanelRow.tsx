@@ -1,3 +1,5 @@
+import PayoutCountdown from './PayoutCountdown'
+
 type UserPanel = {
   id: string
   name: string
@@ -5,6 +7,7 @@ type UserPanel = {
   daily_yield_type: 'percent' | 'fixed'
   daily_yield_value: number
   purchased_at: string
+  last_accrued_at: string
   expires_at: string | null
   total_earned: number
   status: 'active' | 'expired'
@@ -24,6 +27,13 @@ export default function UserPanelRow({ userPanel }: { userPanel: UserPanel }) {
       </td>
       <td className="py-3 px-4 text-[var(--energy)]">+{dailyEstimate.toFixed(2)}/giorno</td>
       <td className="py-3 px-4 font-medium">{Number(userPanel.total_earned).toFixed(2)}</td>
+      <td className="py-3 px-4 whitespace-nowrap">
+        {userPanel.status === 'active' ? (
+          <PayoutCountdown lastAccruedAt={userPanel.last_accrued_at} />
+        ) : (
+          <span className="text-white/40">—</span>
+        )}
+      </td>
       <td className="py-3 px-4 text-white/60">
         {userPanel.expires_at ? new Date(userPanel.expires_at).toLocaleDateString('it-IT') : 'Nessuna'}
       </td>
