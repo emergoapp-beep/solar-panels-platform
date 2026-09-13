@@ -62,9 +62,9 @@ export default async function AdminAnalyticsPage() {
         ))}
       </div>
 
-      <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-3xl overflow-hidden">
         <table className="w-full text-sm">
-          <thead>
+          <thead className="hidden sm:table-header-group">
             <tr className="border-b border-white/10 text-white/60 text-left">
               <th className="py-3 px-4 font-medium">Data</th>
               <th className="py-3 px-4 font-medium">Pagina</th>

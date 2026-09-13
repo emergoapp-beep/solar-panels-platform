@@ -27,9 +27,9 @@ export default async function AdminPanelsPage() {
         <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-2xl">Errore: {error.message}</p>
       )}
 
-      <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-3xl overflow-hidden">
         <table className="w-full text-sm">
-          <thead>
+          <thead className="hidden sm:table-header-group">
             <tr className="border-b border-white/10 text-white/60 text-left">
               <th className="py-3 px-4 font-medium">Nome</th>
               <th className="py-3 px-4 font-medium">Prezzo</th>

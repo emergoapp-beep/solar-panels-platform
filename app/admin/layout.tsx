@@ -42,7 +42,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </Link>
         </div>
 
-        <div className="flex gap-2 mb-8 border-b border-white/10 overflow-x-auto">
+        <div className="flex flex-wrap gap-2 mb-8 border-b border-white/10">
           {links.map((link) => (
             <Link
               key={link.href}

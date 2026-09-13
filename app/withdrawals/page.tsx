@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { Fragment } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import WithdrawalForm from '@/components/withdrawals/WithdrawalForm'
 import StatusBadge from '@/components/deposits/DepositStatusBadge'
@@ -35,9 +36,9 @@ export default async function WithdrawalsPage() {
 
         <div>
           <h2 className="text-lg font-bold mb-3">Storico prelievi</h2>
-          <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
+          <div className="glass rounded-3xl overflow-hidden">
             <table className="w-full text-sm">
-              <thead>
+              <thead className="hidden sm:table-header-group">
                 <tr className="border-b border-white/10 text-white/60 text-left">
                   <th className="py-3 px-4 font-medium">Data</th>
                   <th className="py-3 px-4 font-medium">Wallet</th>
@@ -48,15 +49,46 @@ export default async function WithdrawalsPage() {
               </thead>
               <tbody>
                 {withdrawals?.map((w) => (
-                  <tr key={w.id} className="border-b border-white/10">
-                    <td className="py-3 px-4 text-white/60">
-                      {new Date(w.created_at).toLocaleString('it-IT')}
-                    </td>
-                    <td className="py-3 px-4 font-mono text-xs break-all">{w.wallet_address}</td>
-                    <td className="py-3 px-4">{Number(w.amount)} crediti</td>
-                    <td className="py-3 px-4 font-mono text-xs break-all">{w.tx_hash ?? '—'}</td>
-                    <td className="py-3 px-4"><StatusBadge status={w.status} /></td>
-                  </tr>
+                  <Fragment key={w.id}>
+                    {/* Riga tabella, solo da tablet in su */}
+                    <tr className="hidden sm:table-row border-b border-white/10">
+                      <td className="py-3 px-4 text-white/60">
+                        {new Date(w.created_at).toLocaleString('it-IT')}
+                      </td>
+                      <td className="py-3 px-4 font-mono text-xs break-all">{w.wallet_address}</td>
+                      <td className="py-3 px-4">{Number(w.amount)} crediti</td>
+                      <td className="py-3 px-4 font-mono text-xs break-all">{w.tx_hash ?? '—'}</td>
+                      <td className="py-3 px-4"><StatusBadge status={w.status} /></td>
+                    </tr>
+
+                    {/* Card impilata verticalmente, solo su mobile */}
+                    <tr className="table-row sm:hidden border-b border-white/10">
+                      <td className="p-4">
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span className="text-white/60 text-xs">
+                            {new Date(w.created_at).toLocaleString('it-IT')}
+                          </span>
+                          <StatusBadge status={w.status} />
+                        </div>
+                        <div className="space-y-1.5 text-sm">
+                          <div className="flex justify-between gap-3">
+                            <span className="text-white/60">Importo</span>
+                            <span>{Number(w.amount)} crediti</span>
+                          </div>
+                          <div className="pt-1 border-t border-white/10">
+                            <span className="text-white/60 text-xs">Wallet</span>
+                            <p className="font-mono text-xs break-all">{w.wallet_address}</p>
+                          </div>
+                          {w.tx_hash && (
+                            <div className="pt-1 border-t border-white/10">
+                              <span className="text-white/60 text-xs">TXID invio</span>
+                              <p className="font-mono text-xs break-all">{w.tx_hash}</p>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
