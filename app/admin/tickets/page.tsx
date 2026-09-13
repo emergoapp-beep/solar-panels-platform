@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import TicketStatusBadge from '@/components/support/TicketStatusBadge'
+import DeleteTicketButton from '@/components/admin/DeleteTicketButton'
 
 export default async function AdminTicketsPage() {
   const supabase = await createClient()
@@ -30,19 +31,21 @@ export default async function AdminTicketsPage() {
 
       <div className="glass rounded-3xl overflow-hidden divide-y divide-white/10">
         {tickets?.map((ticket) => (
-          <Link
-            key={ticket.id}
-            href={`/admin/tickets/${ticket.id}`}
-            className="flex items-center justify-between gap-3 px-5 py-4 hover:bg-white/5 transition-colors"
-          >
-            <div className="min-w-0">
-              <p className="font-medium text-sm truncate">{ticket.subject}</p>
-              <p className="text-white/45 text-xs mt-0.5 truncate">
-                {ticket.profiles?.email ?? '—'} · {new Date(ticket.updated_at).toLocaleString('it-IT')}
-              </p>
-            </div>
-            <TicketStatusBadge status={ticket.status} />
-          </Link>
+          <div key={ticket.id} className="flex items-center gap-3 px-5 py-4 hover:bg-white/5 transition-colors">
+            <Link
+              href={`/admin/tickets/${ticket.id}`}
+              className="flex-1 min-w-0 flex items-center justify-between gap-3"
+            >
+              <div className="min-w-0">
+                <p className="font-medium text-sm truncate">{ticket.subject}</p>
+                <p className="text-white/45 text-xs mt-0.5 truncate">
+                  {ticket.profiles?.email ?? '—'} · {new Date(ticket.updated_at).toLocaleString('it-IT')}
+                </p>
+              </div>
+              <TicketStatusBadge status={ticket.status} />
+            </Link>
+            <DeleteTicketButton ticketId={ticket.id} />
+          </div>
         ))}
 
         {(!tickets || tickets.length === 0) && !error && (

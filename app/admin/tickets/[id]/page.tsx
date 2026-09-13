@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import TicketThread from '@/components/support/TicketThread'
 import TicketStatusBadge from '@/components/support/TicketStatusBadge'
+import DeleteTicketButton from '@/components/admin/DeleteTicketButton'
 
 export default async function AdminTicketPage({
   params,
@@ -43,6 +44,10 @@ export default async function AdminTicketPage({
           <p className="text-white/45 text-sm truncate">{ticket.profiles?.email ?? '—'}</p>
         </div>
         <TicketStatusBadge status={ticket.status} />
+      </div>
+
+      <div className="flex justify-end -mt-3">
+        <DeleteTicketButton ticketId={ticket.id} redirectTo="/admin/tickets" />
       </div>
 
       <TicketThread
