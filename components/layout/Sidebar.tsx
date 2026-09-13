@@ -75,7 +75,7 @@ export default function Sidebar() {
             const active = isLinkActive(link.href)
             const isAdminLink = link.href === '/admin'
             return (
-              
+              <a
                 key={link.href}
                 href={link.href}
                 className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors ${
@@ -129,7 +129,7 @@ export default function Sidebar() {
                 const active = isLinkActive(link.href)
                 const isAdminLink = link.href === '/admin'
                 return (
-                  
+                  <a
                     key={link.href}
                     href={link.href}
                     className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors ${
