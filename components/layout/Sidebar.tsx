@@ -22,6 +22,7 @@ export default function Sidebar() {
   const [role, setRole] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [lastPathname, setLastPathname] = useState(pathname)
+  const [unreadCount, setUnreadCount] = useState(0)
 
   // Chiude il menu mobile ogni volta che cambia pagina (aggiornamento durante il render)
   if (pathname !== lastPathname) {
@@ -44,6 +45,11 @@ export default function Sidebar() {
 
       setRole(profile?.role ?? null)
     })
+
+    fetch('/api/tickets/unread-count')
+      .then((res) => res.json())
+      .then((data) => setUnreadCount(data.count ?? 0))
+      .catch(() => {})
   }, [pathname])
 
   async function handleLogout() {
@@ -74,15 +80,20 @@ export default function Sidebar() {
           {allLinks.map((link) => {
             const active = isLinkActive(link.href)
             const isAdminLink = link.href === '/admin'
+            const showBadge = link.href === '/support' && unreadCount > 0
             return (
-              <a
-                key={link.href}
+              <a key={link.href}
                 href={link.href}
-                className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors flex items-center justify-between gap-2 ${
                   active ? 'bg-white/10 text-white' : 'text-white/60 hover:bg-white/5 hover:text-white'
                 } ${isAdminLink ? 'text-[var(--sun)]' : ''}`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {showBadge && (
+                  <span className="text-[10px] leading-none bg-[var(--sun)] text-[var(--sun-dark-text)] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
               </a>
             )
           })}
@@ -128,15 +139,20 @@ export default function Sidebar() {
               {allLinks.map((link) => {
                 const active = isLinkActive(link.href)
                 const isAdminLink = link.href === '/admin'
+                const showBadge = link.href === '/support' && unreadCount > 0
                 return (
-                  <a
-                    key={link.href}
+                  <a key={link.href}
                     href={link.href}
-                    className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                    className={`rounded-2xl px-3 py-2.5 text-sm font-medium transition-colors flex items-center justify-between gap-2 ${
                       active ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'
                     } ${isAdminLink ? 'text-[var(--sun)]' : ''}`}
                   >
-                    {link.label}
+                    <span>{link.label}</span>
+                    {showBadge && (
+                      <span className="text-[10px] leading-none bg-[var(--sun)] text-[var(--sun-dark-text)] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                        {unreadCount > 9 ? '9+' : unreadCount}
+                      </span>
+                    )}
                   </a>
                 )
               })}

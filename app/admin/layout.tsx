@@ -30,6 +30,18 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect('/dashboard')
   }
 
+  const { data: tickets } = await supabase.from('tickets').select('id, updated_at')
+  const { data: reads } = await supabase
+    .from('ticket_reads')
+    .select('ticket_id, last_read_at')
+    .eq('user_id', user.id)
+
+  const readMap = new Map((reads ?? []).map((r) => [r.ticket_id, r.last_read_at]))
+  const unreadCount = (tickets ?? []).filter((ticket) => {
+    const lastRead = readMap.get(ticket.id)
+    return !lastRead || new Date(lastRead) < new Date(ticket.updated_at)
+  }).length
+
   return (
     <main className="min-h-screen text-white p-6">
       <div className="max-w-5xl mx-auto">
@@ -45,12 +57,16 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
         <div className="flex gap-2 mb-8 border-b border-white/10 overflow-x-auto">
           {links.map((link) => (
-            <Link
-              key={link.href}
+            <Link key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-t-3xl whitespace-nowrap shrink-0"
+              className="px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-t-3xl whitespace-nowrap shrink-0 flex items-center gap-1.5"
             >
               {link.label}
+              {link.href === '/admin/tickets' && unreadCount > 0 && (
+                <span className="text-[10px] leading-none bg-[var(--sun)] text-[var(--sun-dark-text)] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
             </Link>
           ))}
         </div>

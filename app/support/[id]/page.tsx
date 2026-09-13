@@ -26,6 +26,8 @@ export default async function SupportTicketPage({
     notFound()
   }
 
+  await supabase.rpc('mark_ticket_read', { p_ticket_id: id })
+
   const { data: messages } = await supabase
     .from('ticket_messages')
     .select('*')
