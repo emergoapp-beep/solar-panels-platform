@@ -122,3 +122,31 @@ export function LogoMarkIcon({ className = '' }: IconProps) {
     </svg>
   )
 }
+
+export function TicketIcon({ className = '' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`}>
+      <path
+        d="M4 8.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1.3a1.7 1.7 0 0 0 0 3.4v1.3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1.3a1.7 1.7 0 0 0 0-3.4V8.5Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M14.5 7v10" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2.4 2.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function SendIcon({ className = '' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`}>
+      <path
+        d="M20 4 3.5 10.6c-.7.3-.6 1.3.1 1.5l6 1.7 1.7 6c.2.7 1.2.8 1.5.1L20 4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M20 4 9.7 13.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+}

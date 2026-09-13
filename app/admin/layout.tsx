@@ -8,6 +8,7 @@ const links = [
   { href: '/admin/panels', label: 'Pannelli' },
   { href: '/admin/deposits', label: 'Depositi' },
   { href: '/admin/withdrawals', label: 'Prelievi' },
+  { href: '/admin/tickets', label: 'Ticket' },
   { href: '/admin/analytics', label: 'Analitiche' },
 ]
 
@@ -42,7 +43,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-8 border-b border-white/10">
+        <div className="flex gap-2 mb-8 border-b border-white/10 overflow-x-auto">
           {links.map((link) => (
             <Link
               key={link.href}
