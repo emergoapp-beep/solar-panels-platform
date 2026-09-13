@@ -29,6 +29,14 @@ export default async function ReferralPage() {
     .eq('referred_by', user.id)
     .order('created_at', { ascending: false })
 
+  const { data: bonusRows } = await supabase
+    .from('balance_transactions')
+    .select('amount')
+    .eq('user_id', user.id)
+    .eq('type', 'referral_bonus')
+
+  const totalBonus = (bonusRows ?? []).reduce((sum, row) => sum + Number(row.amount), 0)
+
   return (
     <main className="min-h-screen text-white p-6">
       <div className="max-w-5xl mx-auto">
@@ -54,6 +62,17 @@ export default async function ReferralPage() {
               Chi si registra da questo link avrà già il codice{' '}
               <span className="text-white/80 font-mono">{profile?.ref_code}</span> precompilato.
             </p>
+
+            <div className="mt-5 pt-5 border-t border-white/10">
+              <p className="text-white/45 text-xs mb-1">Guadagnato con i referral</p>
+              <p className="font-display text-2xl text-[var(--energy)] flex items-center gap-1.5">
+                <CoinIcon className="w-4 h-4" />
+                {totalBonus.toFixed(2)}
+              </p>
+              <p className="text-white/45 text-xs mt-1">
+                Ricevi il 10% di ogni deposito confermato dei tuoi iscritti, accreditato subito sul tuo saldo.
+              </p>
+            </div>
           </div>
 
           <div className="glass rounded-3xl p-6 hover-lift">
