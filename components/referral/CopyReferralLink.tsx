@@ -22,7 +22,7 @@ export default function CopyReferralLink({ refCode, baseUrl }: { refCode: string
 
   return (
     <div className="flex flex-col sm:flex-row gap-2">
-      <div className="flex-1 flex items-center gap-2 input-glass rounded-xl px-4 py-2.5 text-sm text-white/80 overflow-hidden">
+      <div className="flex-1 flex items-center gap-2 input-glass rounded-2xl px-4 py-2.5 text-sm text-white/80 overflow-hidden">
         <LinkIcon className="w-4 h-4 text-white/45 shrink-0" />
         <input
           id="referral-link-input"

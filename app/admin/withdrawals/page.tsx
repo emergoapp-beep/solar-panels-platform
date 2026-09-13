@@ -22,12 +22,12 @@ export default async function AdminWithdrawalsPage() {
       </h2>
 
       {error && (
-        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl mb-4">
+        <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-2xl mb-4">
           Errore: {error.message}
         </p>
       )}
 
-      <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/10 text-white/60 text-left">

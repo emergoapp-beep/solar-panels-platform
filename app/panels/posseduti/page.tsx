@@ -56,7 +56,7 @@ export default async function OwnedPanelsPage() {
           </div>
         </div>
 
-        <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
+        <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/10 text-white/60 text-left">

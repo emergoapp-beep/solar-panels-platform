@@ -90,7 +90,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">
@@ -98,7 +98,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-24 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-24 input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">
@@ -106,7 +106,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             <select
               value={yieldType}
               onChange={(e) => setYieldType(e.target.value as 'percent' | 'fixed')}
-              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             >
               <option value="percent">%/giorno</option>
               <option value="fixed">fisso/giorno</option>
@@ -115,7 +115,7 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
               type="number"
               value={yieldValue}
               onChange={(e) => setYieldValue(e.target.value)}
-              className="w-20 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="w-20 input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             />
           </div>
         </td>
@@ -125,17 +125,17 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
             value={durationDays}
             onChange={(e) => setDurationDays(e.target.value)}
             placeholder="∞"
-            className="w-20 input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-20 input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </td>
         <td className="py-3 px-4">—</td>
         <td className="py-3 px-4">
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
-              <button onClick={handleSave} disabled={loading} className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-xl">
+              <button onClick={handleSave} disabled={loading} className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-2xl">
                 Salva
               </button>
-              <button onClick={() => setEditing(false)} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-xl">
+              <button onClick={() => setEditing(false)} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-2xl">
                 Annulla
               </button>
             </div>
@@ -170,10 +170,10 @@ export default function PanelTypeRow({ panelType }: { panelType: PanelType }) {
       <td className="py-3 px-4">
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
-            <button onClick={() => setEditing(true)} className="text-xs input-glass hover:bg-white/15 px-3 py-1 rounded-xl">
+            <button onClick={() => setEditing(true)} className="text-xs input-glass hover:bg-white/15 px-3 py-1 rounded-2xl">
               Modifica
             </button>
-            <button onClick={handleDelete} disabled={loading} className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-xl">
+            <button onClick={handleDelete} disabled={loading} className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-2xl">
               Elimina
             </button>
           </div>

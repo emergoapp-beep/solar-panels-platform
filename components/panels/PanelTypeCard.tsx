@@ -48,7 +48,7 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
   }
 
   return (
-    <div className="glass cell-texture rounded-2xl p-6 flex flex-col gap-3 hover-lift">
+    <div className="glass cell-texture rounded-3xl p-6 flex flex-col gap-3 hover-lift">
       <div className="flex items-center gap-2 text-[var(--sun)] relative">
         <PanelIcon className="w-5 h-5" />
         <h3 className="font-bold text-white">{panelType.name}</h3>
@@ -68,7 +68,7 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
         </p>
       </div>
 
-      {error && <p className="bg-red-900/50 text-red-300 text-xs p-2 rounded-xl">{error}</p>}
+      {error && <p className="bg-red-900/50 text-red-300 text-xs p-2 rounded-2xl">{error}</p>}
 
       <button
         onClick={handleBuy}

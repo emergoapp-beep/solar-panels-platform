@@ -83,27 +83,27 @@ export default function WithdrawalRow({ withdrawal }: { withdrawal: Withdrawal }
               placeholder="TXID invio (opzionale)"
               value={txHash}
               onChange={(e) => setTxHash(e.target.value)}
-              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono"
+              className="input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50 font-mono"
             />
             <input
               type="text"
               placeholder="Nota (opzionale)"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              className="input-glass rounded-xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+              className="input-glass rounded-2xl px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
             />
             <div className="flex gap-2">
               <button
                 onClick={() => handleAction('approve')}
                 disabled={loading}
-                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-xl"
+                className="text-xs btn-success disabled:opacity-50 px-3 py-1 rounded-2xl"
               >
                 Approva
               </button>
               <button
                 onClick={() => handleAction('reject')}
                 disabled={loading}
-                className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-xl"
+                className="text-xs bg-red-900/50 hover:bg-red-900 text-red-300 disabled:opacity-50 px-3 py-1 rounded-2xl"
               >
                 Rifiuta (rimborsa)
               </button>

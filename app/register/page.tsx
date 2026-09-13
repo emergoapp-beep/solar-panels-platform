@@ -55,17 +55,17 @@ function RegisterForm() {
   return (
     <main className="flex min-h-screen items-center justify-center text-white p-6">
       <form onSubmit={handleSubmit} className="glass glow-corner p-8 rounded-3xl w-full max-w-sm space-y-4 animate-fade-in-up">
-        <div className="w-12 h-12 rounded-2xl btn-primary flex items-center justify-center mb-1">
+        <div className="w-12 h-12 rounded-3xl btn-primary flex items-center justify-center mb-1">
           <LogoMarkIcon className="w-6 h-6" />
         </div>
         <h1 className="text-2xl font-bold mb-2">Registrati</h1>
 
         {error && (
-          <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl">{error}</p>
+          <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-2xl">{error}</p>
         )}
 
         {refFromLink && refCode && (
-          <p className="bg-[var(--sun)]/12 text-[var(--sun)] text-sm p-3 rounded-xl">
+          <p className="bg-[var(--sun)]/12 text-[var(--sun)] text-sm p-3 rounded-2xl">
             Sei stato invitato con il codice <span className="font-mono">{refCode}</span>
           </p>
         )}
@@ -77,7 +77,7 @@ function RegisterForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
 
@@ -89,7 +89,7 @@ function RegisterForm() {
             minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
 
@@ -99,7 +99,7 @@ function RegisterForm() {
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
 
@@ -112,7 +112,7 @@ function RegisterForm() {
               setRefCode(e.target.value)
               setRefFromLink(false)
             }}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
 

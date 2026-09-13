@@ -66,7 +66,7 @@ export default async function PanelsPage() {
             ))}
           </div>
           {(!panelTypes || panelTypes.length === 0) && (
-            <p className="text-white/45 text-center py-12 glass rounded-2xl">
+            <p className="text-white/45 text-center py-12 glass rounded-3xl">
               Nessun pannello disponibile al momento.
             </p>
           )}

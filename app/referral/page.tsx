@@ -66,7 +66,7 @@ export default async function ReferralPage() {
           </div>
 
           {error && (
-            <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl mb-4">
+            <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-2xl mb-4">
               Errore: {error.message}
             </p>
           )}

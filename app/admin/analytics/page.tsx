@@ -55,14 +55,14 @@ export default async function AdminAnalyticsPage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="glass rounded-2xl p-4">
+          <div key={stat.label} className="glass rounded-3xl p-4">
             <p className="text-white/60 text-xs mb-1">{stat.label}</p>
             <p className="font-display text-2xl">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="glass rounded-2xl overflow-hidden overflow-x-auto">
+      <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/10 text-white/60 text-left">

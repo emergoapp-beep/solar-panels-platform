@@ -93,9 +93,9 @@ export default async function DashboardPage() {
               <a
                 key={action.href}
                 href={action.href}
-                className="glass hover:bg-white/10 rounded-2xl p-6 transition-colors hover-lift flex items-center gap-4"
+                className="glass hover:bg-white/10 rounded-3xl p-6 transition-colors hover-lift flex items-center gap-4"
               >
-                <span className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${action.accent}`}>
+                <span className={`w-11 h-11 rounded-3xl flex items-center justify-center shrink-0 ${action.accent}`}>
                   <Icon className="w-5 h-5" />
                 </span>
                 <div>

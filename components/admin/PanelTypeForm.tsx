@@ -84,7 +84,7 @@ export default function PanelTypeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-4">
+    <form onSubmit={handleSubmit} className="glass rounded-3xl p-6 space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold">Nuovo tipo di pannello</h2>
         <button type="button" onClick={() => setOpen(false)} className="text-white/60 hover:text-white text-sm">
@@ -92,7 +92,7 @@ export default function PanelTypeForm() {
         </button>
       </div>
 
-      {error && <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-xl">{error}</p>}
+      {error && <p className="bg-red-900/50 text-red-300 text-sm p-3 rounded-2xl">{error}</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -103,7 +103,7 @@ export default function PanelTypeForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Es. Pannello Base"
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
@@ -115,7 +115,7 @@ export default function PanelTypeForm() {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
@@ -123,7 +123,7 @@ export default function PanelTypeForm() {
           <select
             value={yieldType}
             onChange={(e) => setYieldType(e.target.value as 'percent' | 'fixed')}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           >
             <option value="percent">Percentuale sul prezzo pagato</option>
             <option value="fixed">Importo fisso al giorno</option>
@@ -140,7 +140,7 @@ export default function PanelTypeForm() {
             step="0.01"
             value={yieldValue}
             onChange={(e) => setYieldValue(e.target.value)}
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
         <div>
@@ -152,7 +152,7 @@ export default function PanelTypeForm() {
             value={durationDays}
             onChange={(e) => setDurationDays(e.target.value)}
             placeholder="Es. 365"
-            className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+            className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
           />
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function PanelTypeForm() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={2}
-          className="w-full input-glass rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
+          className="w-full input-glass rounded-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-[var(--sun)]/50"
         />
       </div>
 
