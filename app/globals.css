@@ -241,3 +241,39 @@ body {
     animation: none !important;
   }
 }
+/* ==========================================================================
+   Illustrazione pannelli solari: riflesso animato + indicatore di produzione
+   ========================================================================== */
+
+@keyframes panel-sheen-move {
+  0% {
+    transform: translateX(0) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(280px) skewX(-18deg);
+  }
+}
+.panel-sheen {
+  animation: panel-sheen-move 3.2s ease-in-out infinite;
+}
+
+@keyframes panel-pulse {
+  0%, 100% {
+    r: 3.4;
+    opacity: 1;
+  }
+  50% {
+    r: 4.6;
+    opacity: 0.55;
+  }
+}
+.panel-active-dot {
+  animation: panel-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel-sheen,
+  .panel-active-dot {
+    animation: none !important;
+  }
+}

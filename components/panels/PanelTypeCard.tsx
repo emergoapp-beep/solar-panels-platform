@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { PanelIcon, LeafIcon } from '@/components/icons/Icons'
+import { LeafIcon } from '@/components/icons/Icons'
+import SolarPanelIllustration from '@/components/icons/SolarPanelIllustration'
 
 type PanelType = {
   id: string
@@ -49,8 +50,9 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
 
   return (
     <div className="glass cell-texture rounded-3xl p-6 flex flex-col gap-3 hover-lift">
-      <div className="flex items-center gap-2 text-[var(--sun)] relative">
-        <PanelIcon className="w-5 h-5" />
+      <SolarPanelIllustration active={false} animated />
+
+      <div className="flex items-center gap-2 relative">
         <h3 className="font-bold text-white">{panelType.name}</h3>
       </div>
 
@@ -61,7 +63,8 @@ export default function PanelTypeCard({ panelType, balance }: { panelType: Panel
           Prezzo: <span className="font-bold text-white">{Number(panelType.price)} crediti</span>
         </p>
         <p className="flex items-center gap-1.5">
-          Ricavo stimato: <LeafIcon className="w-3.5 h-3.5 text-[var(--energy)]" /> <span className="font-bold text-[var(--energy)]">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
+          Ricavo stimato: <LeafIcon className="w-3.5 h-3.5 text-[var(--energy)]" />{' '}
+          <span className="font-bold text-[var(--energy)]">+{dailyEstimate.toFixed(2)} crediti/giorno</span>
         </p>
         <p className="text-white/45">
           {panelType.duration_days ? `Attivo per ${panelType.duration_days} giorni` : 'Nessuna scadenza'}

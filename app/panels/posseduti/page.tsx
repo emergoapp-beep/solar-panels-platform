@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import UserPanelRow from '@/components/panels/UserPanelRow'
+import PanelCard from '@/components/panels/PanelCard'
 import { LeafIcon } from '@/components/icons/Icons'
 
 export default async function OwnedPanelsPage() {
@@ -56,33 +56,20 @@ export default async function OwnedPanelsPage() {
           </div>
         </div>
 
-        <div className="glass rounded-3xl overflow-hidden overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-white/10 text-white/60 text-left">
-                <th className="py-3 px-4 font-medium">Pannello</th>
-                <th className="py-3 px-4 font-medium">Acquistato</th>
-                <th className="py-3 px-4 font-medium">Resa</th>
-                <th className="py-3 px-4 font-medium">Guadagnato</th>
-                <th className="py-3 px-4 font-medium">Prossimo accredito</th>
-                <th className="py-3 px-4 font-medium">Scadenza</th>
-                <th className="py-3 px-4 font-medium">Stato</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userPanels?.map((userPanel) => (
-                <UserPanelRow key={userPanel.id} userPanel={userPanel} />
-              ))}
-            </tbody>
-          </table>
-
-          {(!userPanels || userPanels.length === 0) && (
-            <p className="text-white/45 text-center py-12">
+        {userPanels && userPanels.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+            {userPanels.map((userPanel) => (
+              <PanelCard key={userPanel.id} userPanel={userPanel} />
+            ))}
+          </div>
+        ) : (
+          <div className="glass rounded-3xl p-12 text-center">
+            <p className="text-white/45">
               Non possiedi ancora nessun pannello. Vai al{' '}
               <a href="/panels" className="text-[var(--sun)] hover:underline">market</a> per acquistarne uno.
             </p>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </main>
   )
