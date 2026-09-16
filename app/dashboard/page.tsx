@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { CoinIcon, LinkIcon, ShieldIcon, PanelIcon, WithdrawIcon, UsersIcon } from '@/components/icons/Icons'
+import InstallAppButton from '@/components/InstallAppButton'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -82,6 +83,18 @@ export default async function DashboardPage() {
                 Ruolo
               </span>
               <span className="font-medium capitalize">{profile?.role}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass rounded-3xl p-6 mb-6 animate-fade-in-up" style={{ animationDelay: '120ms' }}>
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <h2 className="text-lg font-bold mb-0.5">Porta l&apos;app sul tuo telefono</h2>
+              <p className="text-white/60 text-sm">Accedi più velocemente installando l&apos;app</p>
+            </div>
+            <div className="w-full sm:w-auto sm:min-w-[220px]">
+              <InstallAppButton />
             </div>
           </div>
         </div>
