@@ -9,7 +9,7 @@ export default async function AdminDepositsPage() {
 
   const { data: deposits, error } = await supabase
     .from('deposits')
-    .select('*, profiles(email)')
+    .select('*, profiles!deposits_user_id_fkey(email)')
     .order('status', { ascending: true })
     .order('created_at', { ascending: false })
 

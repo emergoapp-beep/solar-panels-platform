@@ -9,7 +9,7 @@ export default async function AdminWithdrawalsPage() {
 
   const { data: withdrawals, error } = await supabase
     .from('withdrawals')
-    .select('*, profiles(email)')
+    .select('*, profiles!withdrawals_user_id_fkey(email)')
     .order('status', { ascending: true })
     .order('created_at', { ascending: false })
 
