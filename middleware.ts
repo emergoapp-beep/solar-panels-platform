@@ -1,27 +1,19 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
 
 // Registra ogni pagina visitata (per le statistiche in /admin/analytics).
 // Non blocca mai la navigazione: se il tracciamento fallisce, la richiesta
 // prosegue comunque normalmente.
+//
+// NOTA PERFORMANCE: qui NON verifichiamo più l'utente con supabase.auth.getUser(),
+// perché questo middleware gira su ogni singola pagina e quella chiamata è un
+// round-trip di rete verso il server Auth di Supabase — che si sommava a quello
+// già fatto da ogni pagina protetta per il proprio controllo di accesso,
+// raddoppiando di fatto il tempo prima che l'utente vedesse qualcosa. Il
+// tracciamento anonimo (path, IP, user agent) resta identico; per legare le
+// visite a un utente specifico si può leggere l'id direttamente nella pagina
+// (che l'user già recupera) e passarlo a /api/track da lì, se in futuro serve.
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll: () => request.cookies.getAll(),
-        setAll: (cookiesToSet) => {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options))
-        },
-      },
-    }
-  )
-
-  const { data: { user } } = await supabase.auth.getUser()
 
   const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
@@ -34,7 +26,7 @@ export async function middleware(request: NextRequest) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       path: request.nextUrl.pathname,
-      userId: user?.id ?? null,
+      userId: null,
       ip,
       userAgent: request.headers.get('user-agent'),
     }),

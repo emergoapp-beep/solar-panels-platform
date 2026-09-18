@@ -80,6 +80,7 @@ function RegisterForm() {
             <label className="block text-sm text-white/60 mb-1">Email</label>
             <input
               type="email"
+              autoComplete="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -91,6 +92,7 @@ function RegisterForm() {
             <label className="block text-sm text-white/60 mb-1">Password</label>
             <input
               type="password"
+              autoComplete="new-password"
               required
               minLength={6}
               value={password}
